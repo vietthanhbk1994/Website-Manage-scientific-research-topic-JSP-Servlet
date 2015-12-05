@@ -1,0 +1,234 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+/*table, caption, tbody, tfoot, thead, tr, th, td,*/
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+a{}
+.right{float:right;}
+.left{float:left;}
+.clear{clear:both;}
+.wrapper{
+    background-color: #B6B7BC;
+    padding: 20px;
+}
+div.container{
+    border: 1px #496077 solid;
+	
+}
+div.banner{
+    background-color: #4B6C9E;
+	
+    padding: 5px;
+}
+div.menu{
+	
+}
+div.main-body{
+    background-color: white;
+	
+    padding: 15px;
+}
+div.main-body div.main-left{
+	
+}
+div.main-body div.main-right{
+	
+}
+div.footer{
+	
+}
+.banner h1{
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    display: inline;
+}
+.banner .login{
+    display: inline;
+}
+.login label{
+    color: white;
+}
+.login input{
+    width: 100px;
+}
+.login .user{
+    display: inline;
+}
+.login .user label{}
+.login .user input{}
+.login .pass{
+    display: inline;
+}
+input.lg2{
+    width: 85px;
+    font-weight: bold;
+}
+.login .pass label{}
+.login .pass input{}
+.banner .menu{}
+.banner .menu ul{}
+.banner .menu ul li{}
+.banner .menu ul li a{}
+.main-body h2{}
+.main-body .thongbao{
+    border: 1px solid;
+    padding: 10px;
+}
+.main-body .thongbao ul{}
+.main-body .thongbao ul li{}
+.thongbao span{
+    color: red;
+    font-weight: bold;
+}
+.thongbao h4{
+    display: inline;
+    color: #009900;
+}
+.thongbao p{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.right{float:right;}
+.left{float:left;}
+.clear{clear:both;}
+.main-body label{
+    font-weight: bold;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.linhvuc label{
+    font-weight: normal;
+    display: inline;
+}
+.tendetai input,.textbig{
+    width: 80%;
+    margin-bottom: 10px;
+}
+.chedodang label{display:inline;}
+.linhvuc input,.chedodang input{
+    margin: 10px;
+}
+.linhvuc, .chedodang{
+    margin-left: 80px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+textarea{
+    width: 90%;
+    height: 60px;
+    margin: 15px;
+}
+.tieudedk{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.ndspvakq{
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.sanpham input{
+    width: 30px;
+    margin: 5px;
+}
+div .frm-dktruong{
+    margin: 30px;
+}
+.tuychon{
+    margin-top: 30px;
+}
+.tuychon input{
+    margin: 10px;
+}
+.ndsanpham{
+    margin-left: 20px;
+}
+.ndspkhoahoc{
+    margin-left: 20px;
+}
+.ndspkhoahoc input{
+    display: inline;
+}
+a{
+    text-decoration: none;
+}
+.menundk ul li{
+    display: inline-block;
+    border: 1px solid blue;
+    position: relative;
+    padding: 10px;
+}
+.menundk ul li a{
+display: block;}
+.menundk .dkdt li:first-child{
+	margin-top:10px;
+}
+.menundk ul li:hover{
+background-color:gray;}
+.menundk .dkdt{
+	display:none;
+	position: absolute;
+}
+.menundk li:hover>ul{
+	display: block;
+}
+.menundk .dkdt li{
+    display: block;
+    margin-left: -11px;
+    margin-right: -1px;
+}
+.menundk{
+	padding-bottom:20px;
+}
+table, td, th {
+    border: 1px solid blue;
+}
+
+th {
+    background-color: grey;
+    color: blue;
+}
