@@ -1,16 +1,23 @@
 <%@page import="bean.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="<%=request.getContextPath()%>/templates/public/css/style.css"
-	rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../library/jquery-2.1.1.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="<%=request.getContextPath()%>/templates/public/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<%=request.getContextPath()%>/library/js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/library/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/library/ckeditor/ckeditor.js"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/library/css/bootstrap.min.css">
+	<script src="<%=request.getContextPath()%>/library/js/bootstrap.min.js"></script>
+
 <title>Hệ thống đăng ký đề tài nghiên cứu khoa học</title>
 </head>
 <body>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#selecctall').click(function(event) {  //on toggle click 
@@ -30,8 +37,7 @@
 		<div class="container">
 			<div class="header">
 				<div class="banner">
-					<h1>HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC - ĐH BÁCH KHOA
-						ĐÀ NẴNG</h1>
+					<h4>HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC - ĐH BÁCH KHOA ĐÀ NẴNG</h4>
 					<div class="login right">
 						<%
 							Users users = (Users) session.getAttribute("users");
@@ -53,8 +59,8 @@
 						<%
 							} else {
 						%>
-						<span style="color: white;"><%=users.getFullname()%></span> <a
-							href="<%=request.getContextPath()%>/dang-xuat">Logout</a>
+						<span style="color: white;"><%=users.getFullname()%></span>
+						<a href="<%=request.getContextPath()%>/dang-xuat" role="button" class="dangxuat btn btn-danger">Logout</a>
 						<%
 							}
 						%>
@@ -62,23 +68,28 @@
 					<div class="clear"></div>
 				</div>
 			</div>
-			<div class="main-body">
-				<h2>QUẢN TRỊ TRƯỜNG ĐẠI HỌC BÁCH KHOA ĐÀ NẴNG:</h2>
-				<div class="thongbao">
-					<div class="menundk">
-						<ul>
-							<li><a href="khoa-dang-ky">Hiệu chỉnh khóa đăng ký</a></li>
-							<li><a href="hieu-chinh-user">Hiệu chỉnh thành viên</a></li>
-							<li><a href="hieu-chinh-thong-bao">Hiệu chỉnh thông báo</a></li>
-							<li class="capdk"><a href="">Chức năng chỉnh sửa</a>
-								<ul class="dkdt">
+			<div class="">
+						<ul class="nav nav-pills">
+							<li role="presentation"><a href="khoa-dang-ky" class="btn btn-info" role="button">Hiệu chỉnh khóa đăng ký</a></li>
+							<li role="presentation"><a href="hieu-chinh-user" class="btn btn-info" role="button">Hiệu chỉnh thành viên</a></li>
+							<li role="presentation"><a href="hieu-chinh-thong-bao" class="btn btn-info" role="button">Hiệu chỉnh thông báo</a></li>
+							<li class="" role="presentation">
+								<div class="dropdown">
+									<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    Chức năng chỉnh sửa
+										<span class="caret"></span>
+									</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 									<li><a href="">Danh sách các cấp đề tài</a></li>
 									<li><a href="">Danh sách các lĩnh vực</a></li>
 									<li><a href="">Danh sách các khoa</a></li>
 									<li><a href="">Danh sách các chuyên ngành</a></li>
 								</ul>
+								</div>
 							</li>
 							
 						</ul>
-						<div class="clear"></div>
 					</div>
+			<div class="main-body">
+				
+					

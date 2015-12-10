@@ -4,10 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="<%=request.getContextPath()%>/templates/public/css/style.css"
-	rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../library/jquery-2.1.1.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="<%=request.getContextPath()%>/templates/public/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<%=request.getContextPath()%>/library/js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/library/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/library/ckeditor/ckeditor.js"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/library/css/bootstrap.min.css">
+	<script src="<%=request.getContextPath()%>/library/js/bootstrap.min.js"></script>
+
 <title>Hệ thống đăng ký đề tài nghiên cứu khoa học</title>
 </head>
 <body>
@@ -15,8 +19,7 @@
 		<div class="container">
 			<div class="header">
 				<div class="banner">
-					<h1>HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC - ĐH BÁCH KHOA
-						ĐÀ NẴNG</h1>
+					<h4>HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC - ĐH BÁCH KHOA ĐÀ NẴNG</h4>
 					<div class="login right">
 						<%
 							Users users = (Users) session.getAttribute("users");
@@ -37,8 +40,8 @@
 						<%
 							} else {
 						%>
-						<span style="color: white;"><%=users.getFullname()%></span> <a
-							href="<%=request.getContextPath()%>/dang-xuat">Logout</a>
+						<span style="color: white;"><%=users.getFullname()%></span> 
+						<a href="<%=request.getContextPath()%>/dang-xuat" role="button" class="dangxuat btn btn-danger">Logout</a>
 						<%
 							}
 						%>
@@ -47,18 +50,8 @@
 				</div>
 			</div>
 			<div class="main-body">
-				<h2>
-					QUẢN TRỊ
-					<%
-					out.print(users.getTenKhoa());
-				%>:
-				</h2>
-				<div class="thongbao">
-					<div class="menu-truong">
-						<ul>
-							<li><a
-								href="<%=request.getContextPath()%>/khoa-danh-sach?khoa=<%=users.getIdKhoa()%>">Xem
-									danh sách đề tài</a></li>
-							<li><a href="">Xem danh sách thành viên</a></li>
-						</ul>
-					</div>
+				<div class="">
+					<ul class="nav nav-pills">
+						<li role="presentation"><a href="<%=request.getContextPath()%>/khoa-danh-sach?khoa=<%=users.getIdKhoa()%>" class="btn btn-info" role="button">Danh sách đề tài Khoa</a></li>
+						<li role="presentation"><a href="<%=request.getContextPath()%>/khoa-danh-sach?khoa=<%=users.getIdKhoa()%>" class="btn btn-info" role="button">Danh sách thành viên Khoa</a></li>
+					</ul>

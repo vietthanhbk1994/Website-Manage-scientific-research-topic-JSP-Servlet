@@ -6,8 +6,9 @@
 	pageEncoding="UTF-8"%>
 <%@include file="templates/public/inc/header.jsp"%>
 
-<h2>THÔNG BÁO:</h2>
+<h4 style="color:red;">THÔNG BÁO:</h4>
 <div class="thongbao">
+
 	<ul>
 	<%
 		ArrayList<ThongBao> listThongBao = (ArrayList<ThongBao>) request.getAttribute("listThongBao");
@@ -24,8 +25,8 @@
 			String ngayDangTin = eachThongBao.getNgayDang();
 						
 	%>
-		<li><span class=""><%=ngayDangTin%>: </span>
-			<h4><%=tenThongBao %></h4>
+		<li><span class="ngaydangtin"><%=ngayDangTin%>: </span>
+			<h5><%=tenThongBao %></h5>
 			<p><%=noiDung %></p>
 			<%
 				if(dinhKemFile!=""){

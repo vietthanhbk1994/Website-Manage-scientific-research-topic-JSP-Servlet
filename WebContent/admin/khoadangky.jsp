@@ -30,7 +30,7 @@
 	</form>
 	
 	
-		<table>
+		<table class="table table-hover">
 			<tr>
 				<th>ID cấp đăng ký</th>
 				<th>Tên cấp đăng ký</th>

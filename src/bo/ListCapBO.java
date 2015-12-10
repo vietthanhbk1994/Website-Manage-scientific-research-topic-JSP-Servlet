@@ -10,4 +10,5 @@ public class ListCapBO {
 	public ArrayList<Cap> getListCap(){
 		return listCapDAO.getListCap();
 	}
+	
 }

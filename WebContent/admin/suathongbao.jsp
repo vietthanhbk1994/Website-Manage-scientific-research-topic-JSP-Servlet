@@ -19,10 +19,10 @@
 	<form
 		action="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao?load=sua&act=dasua&id=<%=idThongBao%>"
 		method="post" class="themthongbao" enctype="multipart/form-data" >
-		<label>Tên thông báo: </label> <input type="text" name="tenThongBao"
-			value="<%=tenThongBao%>" class="textbig" /> <label>Nội dung
-			thông báo: </label>
-		<textarea name="noiDungThongBao"><%=noiDungThongBao%></textarea>
+		<label>Tên thông báo: </label> 
+		<input type="text" name="tenThongBao" value="<%=tenThongBao%>" class="textbig" required /> 
+		<label>Nội dung thông báo: </label>
+		<textarea name="noiDungThongBao" required class="ckeditor" > <%=noiDungThongBao%> </textarea>
 
 		<label>Chế độ đăng:</label>
 		<div class="chedodang">

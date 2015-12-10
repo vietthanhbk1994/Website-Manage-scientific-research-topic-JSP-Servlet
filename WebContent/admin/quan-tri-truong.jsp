@@ -37,7 +37,7 @@
 				 }
 				%>
 		  
-		  <option value="0">Tất cả các năm</option>
+		  <option value="0">Tất cả</option>
 		</select>
 		
 		<label>Cấp: </label>
@@ -46,7 +46,7 @@
 			<option value="Cấp đại học Đà Nẵng">Cấp đại học Đà Nẵng</option>
 			<option value="Cấp bộ">Cấp bộ</option>
 			<option value="Cấp nhà nước">Cấp nhà nước</option>
-			<option value="" selected="selected">Tất cả các cấp</option>
+			<option value="" selected="selected">Tất cả</option>
 		</select>
 		
 		<label>Khoa: </label>
@@ -58,12 +58,12 @@
 			%>
 				<option value="<%=listKhoa.get(i).getIdKhoa()%>"><%=listKhoa.get(i).getTenKhoa() %></option>
 			<%} }%>
-			<option value="0" selected="selected">Tất cả các khoa</option>
+			<option value="0" selected="selected">Tất cả</option>
 		</select>
 		
-		<input type="submit" value="Tìm kiếm" name="timkiem"/>
+		<input type="submit" value="Lọc kết quả" name="timkiem"/>
 		<br />
-		<table>
+		<table class="table table-hover">
 			<tr>
 				<th>TT</th>
 				<th>Tên đề xuất chương trình</th>

@@ -195,10 +195,15 @@
 				 }
 				}
 					else{
-						out.println("<h4 style = 'color:red'>Bạn không phải là người đăng kýy</h4>");
+						out.println("<h4 style = 'color:red'>Bạn không phải là người đăng ký</h4>");
 					}
 				 %>
 			</div>
+			<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+</button>
+			cai bieu tuong in rang ko in ra duoc
+			<span class="glyphicon glyphicon-search" aria-hidden="true" style="width: 15px; height: 15px"></span>
 		</form>
 	</div>
 </div>

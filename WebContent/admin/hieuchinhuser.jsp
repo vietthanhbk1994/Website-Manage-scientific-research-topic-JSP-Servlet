@@ -22,9 +22,9 @@
 	<br />
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-user" method="get">
 	
-	<table>
+	<table class="table table-hover">
 		<tr>
-			<th>ID User</th>
+			<th>STT</th>
 			<th>Tên User</th>
 			<th>Mã số thẻ</th>
 			<th>Quyền</th>
@@ -45,8 +45,9 @@
 		</tr>
 	<%
 		ArrayList<Users> listUser = (ArrayList<Users>) request.getAttribute("listUser");
-	
+		int stt=0;
 		for(Users eachUser : listUser){
+			stt++;
 			int idUser = eachUser.getIdUser();
 			String tenUser = eachUser.getFullname();
 			int role = eachUser.getRole();
@@ -68,7 +69,7 @@
 			String tenKhoa = eachUser.getTenKhoa();
 	%>
 		<tr>
-			<td><%=idUser %></td>
+			<td><%= stt %></td>
 			<td><%= tenUser %></td>
 			<td><%= soThe %></td>
 			<td><%= quyen %></td>

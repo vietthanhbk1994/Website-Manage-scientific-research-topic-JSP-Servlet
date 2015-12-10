@@ -31,20 +31,20 @@
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-user?load=sua&act=dasua&id=<%=idUser%>" method="post" class="themthongbao">
 	
 		<label>Tên đầy đủ: </label>
-		<input type="text" name="fullname" value="<%=fullname%>" class="textbig"/>
+		<input type="text" name="fullname" value="<%=fullname%>" class="textbig" required />
 								
 		<label>Mã số thẻ: </label>
-		<input type="text" name="soThe" value="<%=soThe %>" class="textbig"/>
+		<input type="number" name="soThe" value="<%=soThe %>" class="textbig" required />
 		
 		<label>Mật khẩu: </label>
-		<input type="text" name="password" value="<%=password %>" class="textbig"/>
+		<input type="text" name="password" value="<%=password %>" class="textbig" required />
 		
 		<label>Địa chỉ: </label>
-		<input type="text" name="address" value="<%=address %>" class="textbig" placeholder="Số nhà đường/Tổ - Xã/Phường/Trị trấn - Huyện/Quận - Tỉnh/Thành phố"/>
+		<input type="text" name="address" value="<%=address %>" class="textbig" placeholder="Số nhà đường/Tổ - Xã/Phường/Trị trấn - Huyện/Quận - Tỉnh/Thành phố" required />
 		<label>Số điện thoại: </label>
-		<input type="text" name="dienthoai" value="<%=dienThoai %>" class="textbig"/>
+		<input type="text" name="dienthoai" value="<%=dienThoai %>" class="textbig" required />
 		<label>Email: </label>
-		<input type="email" name="email" value="<%=email %>" class="textbig"/>
+		<input type="email" name="email" value="<%=email %>" class="textbig" required />
 		
 		<label>Chuyên ngành-Khoa:</label>
 		

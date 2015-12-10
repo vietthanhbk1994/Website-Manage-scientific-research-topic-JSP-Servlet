@@ -6,10 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="<%=request.getContextPath()%>/templates/public/css/style.css"
-	rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<%=request.getContextPath()%>/library/jquery-2.1.1.min.js"></script>
+<link href="<%=request.getContextPath()%>/templates/public/css/style.css" rel="stylesheet" type="text/css" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="<%=request.getContextPath()%>/library/js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/library/js/jquery.validate.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/library/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/library/css/bootstrap.min.css">
+<script src="<%=request.getContextPath()%>/library/js/bootstrap.min.js"></script>
+
 <title>Hệ thống đăng ký đề tài nghiên cứu khoa học</title>
 </head>
 <body>
@@ -17,8 +22,8 @@
 		<div class="container">
 			<div class="header">
 				<div class="banner">
-					<h1>HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC - ĐH BÁCH KHOA
-						ĐÀ NẴNG</h1>
+				
+					<h4>HỆ THỐNG ĐK đề tài NCKH - TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐH ĐÀ NẴNG</h4>
 					<div class="login right">
 						<%
 							Users users = (Users) session.getAttribute("users");
@@ -26,8 +31,7 @@
 						%>
 						<form method="post" action="login" id="mh0">
 							<div class="user">
-								<label>Số thẻ: </label> <input type="text" class="lg0"
-									name="username" id="u0" />
+								<label>Số thẻ: </label> <input type="text" class="lg0" name="username" id="u0" />
 							</div>
 							<div class="pass">
 								<label>Mật khẩu: </label> <input type="password" class="lg1"
@@ -39,9 +43,10 @@
 						<%
 							} else {
 						%>
-						<a href="<%=request.getContextPath()%>/thong-tin-ca-nhan"><span
-							style="color: white;"><%=users.getFullname()%></span> <a
-							class="dangxuat" href="<%=request.getContextPath()%>/dang-xuat">Logout</a>
+						<a href="<%=request.getContextPath()%>/thong-tin-ca-nhan">
+							<span style="color: white;"><%=users.getFullname()%></span>
+						</a>
+						<a href="<%=request.getContextPath()%>/dang-xuat" role="button" class="dangxuat btn btn-danger">Logout</a>
 
 							<%
 								}
@@ -52,30 +57,36 @@
 				<%
 					if (users != null && users.getRole() == 0) {
 				%>
-				<div class="menundk">
-					<ul>
-						<!-- <li><a href="<%=request.getContextPath()%>/login" title="" target="_self">Thông báo</a></li> -->
-						<%
-						ArrayList<Cap> ListCap = (ArrayList<Cap>) request
-						.getAttribute("ListCap");
-						if (ListCap != null) {
-						%>
-						<li class="capdk"><span>Đăng ký đề tài</span>
-							<ul class="dkdt">
-								<%
-									for (Cap eachCap : ListCap) {
-								%>
-								<li><a
-									href="<%=request.getContextPath()%>/dang-ky?cap=<%=eachCap.getIdCap()%>"
-									title="" target="_self"> <%=eachCap.getTenCap()%>
-								</a></li>
-								<%
-									}
-								%>
-							</ul></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
+				<ul class="nav nav-pills">
+					<li role="presentation" class="">
+						<a  href="<%=request.getContextPath()%>/welcome" class="btn btn-info" role="button">Tình trạng đăng ký</a>
+					</li>
+					<li role="presentation" class="">
+						<a  href="<%=request.getContextPath()%>/thong-tin-ca-nhan" class="btn btn-info" role="button">Thông tin cá nhân</a>
+					</li>
+					<li>
+						<div class="dropdown">
+							<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Đăng ký đề tài
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<%
+							ArrayList<Cap> ListCap = (ArrayList<Cap>) request.getAttribute("ListCap");
+							if (ListCap != null) {
+								for (Cap eachCap : ListCap) {
+							%>
+								<li>
+									<a href="<%=request.getContextPath()%>/dang-ky?cap=<%=eachCap.getIdCap()%>"
+										title="" target="_self"> <%=eachCap.getTenCap()%>
+									</a>
+								</li>
+							<%}%>
+							
+							</ul>
+						</div>
+					</li>
+				</ul>
 				<%
 					}
 					}

@@ -201,7 +201,14 @@
     <servlet-name>AdminKiemDuyetAction</servlet-name>
     <url-pattern>/admin/kiemduyet</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>AdminSettingAction</servlet-name>
+    <servlet-class>action.AdminSettingAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminSettingAction</servlet-name>
+    <url-pattern>/admin/setting</url-pattern>
+  </servlet-mapping>
   
   
 </web-app>

@@ -16,29 +16,31 @@
 		if(msg!=null){
 			out.print("<span style='color:red;'>"+msg+"</span><br />");
 		}
+		int stt=0;
 	%>
 	<a href="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao?load=them" title="" class="themthongbao">Thêm thông báo</a>
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao" method="get">
 	
-	<table>
+	<table class="table table-hover">
 		<tr>
-			<th>ID thông báo</th>
+			<th>STT</th>
 			<th>Ngày đăng</th>
 			<th>Tên thông báo</th>
 			<th>Nội dung thông báo</th>
 			<th>Hiển thị</th>
 			<th>File đính kèm</th>
-			<th>Sửa</th>
+			<th>Chỉnh sửa</th>
 			<th>
 				<input type="submit" name="submit" value="Xóa"/>
 				<br/>
-				<input type="checkbox" name="xoatatca" value="0" id="selecctall"/>Xóa tất cả
+				<input type="checkbox" name="xoatatca" value="0" id="selecctall"/>Chọn tất cả
 			</th>
 		</tr>
 	<%
 		ArrayList<ThongBao> listThongBao = (ArrayList<ThongBao>) request.getAttribute("listThongBao");
 	
 		for(ThongBao eachThongBao : listThongBao){
+			stt++;
 			int idThongBao = eachThongBao.getIdThongBao();
 			int cheDo = eachThongBao.getCheDo();
 			String cheDoDang="";
@@ -52,7 +54,7 @@
 			
 	%>
 		<tr>
-			<td><%=idThongBao %></td>
+			<td><%= stt %></td>
 			<td><%= ngayDang %></td>
 			<td><%= tenThongBao %></td>
 			<td><%= noiDung %></td>

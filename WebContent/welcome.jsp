@@ -18,10 +18,10 @@ $(document).ready(function() {
 	
 });
 </script>
-<h2>CHÀO MỪNG ĐẾN VỚI HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC ONLINE</h2>
+<h4>CHÀO MỪNG ĐẾN VỚI HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC ONLINE</h4>
 <div class="thongbao">
 <form name = "frm-del" action = "delete">
-<table border = "1">
+<table class="table table-hover">
 
 <%
 Users userslogin = (Users)session.getAttribute("users");
@@ -42,7 +42,8 @@ if(ListDeTai!=null && ListDeTai.size()==0){
 	<th>Kiểm duyệt</th>
 	<th>
 		<input type = "submit" name = "del" value ="Xóa" />
-		<input type = "checkbox" id="selecctall" />
+		<br />
+		<input type = "checkbox" id="selecctall" /> Chọn tất cả 
 	</th>
 </tr>
 
