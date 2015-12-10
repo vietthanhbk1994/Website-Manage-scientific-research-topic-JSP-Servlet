@@ -18,11 +18,11 @@ $(document).ready(function() {
 	
 });
 </script>
-<h4>CHÀO MỪNG ĐẾN VỚI HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC ONLINE</h4>
+<h2>CHÀO MỪNG ĐẾN VỚI HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC ONLINE</h2>
 <div class="thongbao">
 <form name = "frm-del" action = "delete">
-<table class="table table-hover">
-
+<h3>ĐỀ TÀI THAM GIA</h3>
+<table border = "1">
 <%
 Users userslogin = (Users)session.getAttribute("users");
 String msg = request.getParameter("msg");
@@ -31,6 +31,8 @@ if(msg!=null){
 }
 ArrayList<DeTai> ListDeTai = (ArrayList<DeTai>) request
 .getAttribute("ListDeTai");
+ArrayList<DeTai> listDeTai2 = (ArrayList<DeTai>) request
+.getAttribute("listDeTai2");
 if(ListDeTai!=null && ListDeTai.size()==0){
 	out.println("<h4 style = 'color:red'>Chưa có đề tài nào</h4");
 }else{
@@ -39,11 +41,10 @@ if(ListDeTai!=null && ListDeTai.size()==0){
 	<th>Tên Đề Tài</th>
 	<th>Cấp đề tài</th>
 	<th>Xác nhận đăng ký</th>
-	<th>Kiểm duyệt</th>
+	<th>Tình trạng</th>
 	<th>
 		<input type = "submit" name = "del" value ="Xóa" />
-		<br />
-		<input type = "checkbox" id="selecctall" /> Chọn tất cả 
+		<input type = "checkbox" id="selecctall" />
 	</th>
 </tr>
 
@@ -61,7 +62,7 @@ if(ListDeTai!=null && ListDeTai.size()==0){
 	
 	<%
 		}else{
-			out.println("<span style = 'color:red;'>Bạn không phải chủ đăng ký</span>");
+			out.println("<span style = 'color:red;'>Bạn không phải người đề xuất</span>");
 		}
 		}else out.println("<span style = 'color:red;'>Đã đăng ký</span>");
 	%>
@@ -80,7 +81,69 @@ if(ListDeTai!=null && ListDeTai.size()==0){
 	%>
 	</td>
 	<td>
-		<input type="checkbox" name = "checkbox" class="checkbox1" value="<%=eachDeTai.getIdDeTai()%>" />
+		<%if(eachDeTai.getXacnhandangky()==0){ %>
+			<input type="checkbox" name = "checkbox" class="checkbox1" value="<%=eachDeTai.getIdDeTai()%>" />
+		<%} %>
+	</td>
+</tr>
+
+<%} }%>
+
+</table><br />
+<table border = "1">
+<h3>ĐỀ TÀI ĐỀ XUẤT NHƯNG KHÔNG THAM GIA</h3>
+<%
+if(listDeTai2!=null && listDeTai2.size()==0){
+	out.println("<h4 style = 'color:red'>không có</h4");
+}else{
+%>
+<tr>
+	<th>Tên Đề Tài</th>
+	<th>Cấp đề tài</th>
+	<th>Xác nhận đăng ký</th>
+	<th>Tình trạng</th>
+	<th>
+		<input type = "submit" name = "del" value ="Xóa" />
+		<input type = "checkbox" id="selecctall" />
+	</th>
+</tr>
+
+<%
+	for(DeTai eachDeTai2:listDeTai2){
+%>
+<tr>
+	<td><a href = "chi-tiet?de-tai=<%=eachDeTai2.getIdDeTai() %>"><%=eachDeTai2.getTenDeTai() %></a></td>
+	<td><%=eachDeTai2.getTenCap() %></td>
+	<td>
+	<%if(eachDeTai2.getXacnhandangky()==0){
+		if(userslogin.getIdUser()==eachDeTai2.getIdNguoiDK()){
+		%>
+	<a href = "xacnhandangky?detai=<%=eachDeTai2.getIdDeTai()%>&&cap=<%=eachDeTai2.getIdCap()%>">Đăng ký</a>	
+	
+	<%
+		}else{
+			out.println("<span style = 'color:red;'>Bạn không phải người đề xuất</span>");
+		}
+		}else out.println("<span style = 'color:red;'>Đã đăng ký</span>");
+	%>
+	</td>
+	<td>
+	<%
+	if(eachDeTai2.getKiemduyet()==3){
+		out.println("Đã duyệt");
+	}else{
+	if(eachDeTai2.getKiemduyet()==-1){
+		out.println("Không duyệt");
+	}else{
+		out.println("Chưa duyệt");
+	}
+	}
+	%>
+	</td>
+	<td>
+		<%if(eachDeTai2.getXacnhandangky()==0){ %>
+			<input type="checkbox" name = "checkbox" class="checkbox1" value="<%=eachDeTai2.getIdDeTai()%>" />
+		<%} %>
 	</td>
 </tr>
 

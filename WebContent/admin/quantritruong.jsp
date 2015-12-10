@@ -22,7 +22,7 @@
 		listKhoa = (ArrayList<Users>) request.getAttribute("listKhoa");
 		int tt=1;
 	%>
-	
+
 	<form action="tim-kiem-truong" method="post">
 		
 		<label>Số thẻ:</label> <input type="text" name="sothe" value=""/>

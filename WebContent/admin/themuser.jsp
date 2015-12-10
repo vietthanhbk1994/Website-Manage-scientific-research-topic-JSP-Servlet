@@ -20,20 +20,20 @@
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-user?load=them&act=dathem" method="post" class="themthongbao">
 		
 		<label>Tên đầy đủ: </label>
-		<input type="text" name="fullname" value="" class="textbig" required />
+		<input type="text" name="fullname" value="" class="textbig"/>
 								
 		<label>Mã số thẻ: </label>
-		<input type="number" name="soThe" value="" class="textbig" required />
+		<input type="text" name="soThe" value="" class="textbig"/>
 		
 		<label>Mật khẩu: </label>
-		<input type="text" name="password" value="123456" class="textbig" required />
+		<input type="text" name="password" value="123456" class="textbig"/>
 		
 		<label>Địa chỉ: </label>
-		<input type="text" name="address" value="" class="textbig" placeholder="Số nhà đường/Tổ - Xã/Phường/Trị trấn - Huyện/Quận - Tỉnh/Thành phố" required />
+		<input type="text" name="address" value="" class="textbig" placeholder="Số nhà đường/Tổ - Xã/Phường/Trị trấn - Huyện/Quận - Tỉnh/Thành phố"/>
 		<label>Số điện thoại: </label>
-		<input type="text" name="dienthoai" value="" class="textbig" required />
+		<input type="text" name="dienthoai" value="" class="textbig"/>
 		<label>Email: </label>
-		<input type="email" name="email" value="" class="textbig" required />
+		<input type="email" name="email" value="" class="textbig"/>
 		
 		<label>Chuyên ngành-Khoa:</label>
 		

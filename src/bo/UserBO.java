@@ -4,7 +4,6 @@ import dao.UserDAO;
 
 import java.util.ArrayList;
 
-import bean.ThongBao;
 import bean.Users;
 
 public class UserBO {
@@ -37,5 +36,9 @@ public class UserBO {
 	}
 	public boolean issetUserBO(String soThe){
 		return userdao.issetUserDAO(soThe);
+	}
+	public ArrayList<Users> getListThanhVien(String dsThanhVien) {
+		// TODO Auto-generated method stub
+		return userdao.getListThanhVien(dsThanhVien);
 	}
 }

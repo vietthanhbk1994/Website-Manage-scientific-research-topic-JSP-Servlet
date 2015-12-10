@@ -60,6 +60,7 @@ public class PublicWelcomeAction extends HttpServlet {
 		ListCapBO listCapBO = new ListCapBO();
 		request.setAttribute("ListCap", listCapBO.getListCap());
 		request.setAttribute("ListDeTai", deTaiBO.getListDeTai(idUsers));
+		request.setAttribute("listDeTai2", deTaiBO.getListDeTai2(idUsers));
 		RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
 		rd.forward(request, response);
 		

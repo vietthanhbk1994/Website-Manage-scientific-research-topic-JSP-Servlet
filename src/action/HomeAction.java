@@ -47,7 +47,7 @@ public class HomeAction extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
-		
+	
 		ThongBaoBO thongBaoBO = new ThongBaoBO();
 		ArrayList<ThongBao> listThongBao = new ArrayList<ThongBao>();
 		listThongBao = thongBaoBO.getListThongBao();

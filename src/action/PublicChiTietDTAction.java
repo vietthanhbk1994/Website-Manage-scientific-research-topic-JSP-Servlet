@@ -16,6 +16,7 @@ import bean.Linhvuc;
 import bean.Users;
 import bo.DeTaiBO;
 import bo.LinhVucBO;
+import bo.UserBO;
 
 /**
  * Servlet implementation class PublicChiTietDTAction
@@ -61,6 +62,7 @@ public class PublicChiTietDTAction extends HttpServlet {
 		}
 		int idDeTai = Integer.parseInt(request.getParameter("de-tai"));
 		DeTaiBO deTaiBO = new DeTaiBO();
+		UserBO userBO = new UserBO();
 		LinhVucBO linhVucBO = new LinhVucBO();
 		//lay danh sach linh vuc
 		ArrayList<Linhvuc> ListLinhVuc = linhVucBO.getLinhVuc();
@@ -68,6 +70,7 @@ public class PublicChiTietDTAction extends HttpServlet {
 		//lay de tai chi tiet
 		DeTai detaitamthoi = deTaiBO.getChiTiet(idDeTai);
 		request.setAttribute("DeTaiChiTiet", detaitamthoi);
+		request.setAttribute("listThanhVien", userBO.getListThanhVien(detaitamthoi.getDanhsachtv()));
 		RequestDispatcher rd =request.getRequestDispatcher("chitietdetai.jsp");
 		rd.forward(request, response);
 	}

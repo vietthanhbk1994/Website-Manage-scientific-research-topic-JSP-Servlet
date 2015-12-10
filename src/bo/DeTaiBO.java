@@ -58,4 +58,12 @@ public class DeTaiBO {
 		// TODO Auto-generated method stub
 		return deTaiDAO.kiemduyet(idDeTai,kiemduyet);
 	}
+	public boolean notSameKhoa(int idKhoa, String dsID) {
+		// TODO Auto-generated method stub
+		return deTaiDAO.notSameKhoa(idKhoa,dsID);
+	}
+	public ArrayList<DeTai> getListDeTai2(int idUsers) {
+		// TODO Auto-generated method stub
+		return deTaiDAO.getListDeTai2(idUsers);
+	}
 }

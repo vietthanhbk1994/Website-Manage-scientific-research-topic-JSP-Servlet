@@ -42,14 +42,7 @@ public class LogoutAction extends HttpServlet {
 		Users users = (Users)session.getAttribute("users");
 		if(users!=null){
 			session.invalidate();
-			
-			ThongBaoBO thongBaoBO = new ThongBaoBO();
-			ArrayList<ThongBao> listThongBao = new ArrayList<ThongBao>();
-			listThongBao = thongBaoBO.getListThongBao();
-			request.setAttribute("listThongBao", listThongBao);
-		
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
+			response.sendRedirect("thong-bao");
 		}
 	}
 

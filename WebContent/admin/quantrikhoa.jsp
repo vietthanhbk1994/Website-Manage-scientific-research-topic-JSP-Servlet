@@ -54,8 +54,8 @@
 		</select>
 		
 		
-		<input type="submit" value="Lọc kết quả" name="timkiem"/>
-		<table class="table table-hover">
+		<input type="submit" value="Tìm kiếm" name="timkiem"/>
+		<table>
 			<tr>
 				<th>TT</th>
 				<th>Tên đề tài</th>

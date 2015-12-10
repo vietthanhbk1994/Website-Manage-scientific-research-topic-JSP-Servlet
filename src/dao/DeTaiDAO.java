@@ -16,11 +16,6 @@ public class DeTaiDAO {
 	DataBase db = new DataBase();
 
 	public ArrayList<DeTai> timKiemDeTaiTruong(int idKhoa, String soThe, String fullname, String cap, int nam) {
-		System.out.println("id Khoa:" + idKhoa);
-		System.out.println("soThe:" + soThe);
-		System.out.println("fullname:" + fullname);
-		System.out.println("cap:" + cap);
-		System.out.println("nam:" + nam);
 
 		ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 		String dk0 = "", dk1 = "", dk2 = "", dk3 = "", dk4 = "";
@@ -43,14 +38,8 @@ public class DeTaiDAO {
 		if (cap != "") {
 			dk4 = " AND capdetai.tenCap = " + cap;
 		}
-		System.out.println("dk0:" + dk0);
-		System.out.println("dk1:" + dk1);
-		System.out.println("dk2:" + dk2);
-		System.out.println("dk3:" + dk3);
-		System.out.println("dk4:" + dk4);
 
 		sql += dk0 + dk1 + dk2 + dk3 + dk4;
-		System.out.println("sql:" + sql);
 
 		try {
 			Statement stm = db.connectDB().createStatement();
@@ -98,11 +87,6 @@ public class DeTaiDAO {
 	}
 
 	public ArrayList<DeTai> timKiemDeTaiKhoa(int idKhoa, String soThe, String fullname, String cap, int nam) {
-		System.out.println("id Khoa:" + idKhoa);
-		System.out.println("soThe:" + soThe);
-		System.out.println("fullname:" + fullname);
-		System.out.println("cap:" + cap);
-		System.out.println("nam:" + nam);
 
 		ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 		String dk0 = "", dk1 = "", dk2 = "", dk3 = "", dk4 = "";
@@ -125,14 +109,8 @@ public class DeTaiDAO {
 		if (cap != "") {
 			dk4 = " AND capdetai.tenCap = " + cap;
 		}
-		System.out.println("dk0:" + dk0);
-		System.out.println("dk1:" + dk1);
-		System.out.println("dk2:" + dk2);
-		System.out.println("dk3:" + dk3);
-		System.out.println("dk4:" + dk4);
 
 		sql += dk0 + dk1 + dk2 + dk3 + dk4;
-		System.out.println("sql:" + sql);
 
 		try {
 			Statement stm = db.connectDB().createStatement();
@@ -629,7 +607,6 @@ public class DeTaiDAO {
 		int check = 0;
 		String sql = "UPDATE danhsachdetai SET kiemduyet = 1 WHERE idDeTai = " + listxacnhan;
 		try {
-			System.out.println(sql);
 			PreparedStatement pstm = db.connectDB().prepareStatement(sql);
 			check = pstm.executeUpdate();
 		} catch (Exception e) {
@@ -637,6 +614,51 @@ public class DeTaiDAO {
 			e.printStackTrace();
 		}
 		return (check != 0);
+	}
+
+	public boolean notSameKhoa(int idKhoa, String dsID) {
+		// TODO Auto-generated method stub
+		String array[] = dsID.split(",");
+		for(String id:array){
+			String sql = "SELECT users.idUsers FROM users INNER JOIN chuyennganh ON users.idChuyenNganh = chuyennganh.idChuyenNganh WHERE chuyennganh.idKhoa = "+idKhoa+" && users.idUsers = "+id;
+			try {
+				Statement stm = db.connectDB().createStatement();
+				ResultSet rs = stm.executeQuery(sql);
+				if(!rs.last()){
+					return true;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return false;
+	}
+
+	public ArrayList<DeTai> getListDeTai2(int idUsers) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT danhsachdetai.idDeTai,danhsachdetai.tenDeTai,capdetai.idCap,danhsachdetai.xacnhandangky,danhsachdetai.kiemduyet,danhsachdetai.xacnhandangky,capdetai.tenCap FROM danhsachdetai INNER JOIN capdetai ON danhsachdetai.idCap = capdetai.idCap WHERE danhsachdetai.idUsers = "+idUsers+" and "+idUsers+" NOT IN (SELECT idUsers FROM detaichitiet WHERE idDeTai = danhsachdetai.idDeTai)";
+		ArrayList<DeTai> listDeTai2 = new ArrayList<DeTai>();
+		try {
+			Statement stm = db.connectDB().createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			while(rs.next()){
+				DeTai detai = new DeTai();
+				detai.setIdDeTai(rs.getInt("idDeTai"));
+				detai.setTenDeTai(rs.getString("tenDeTai"));
+				detai.setTenCap(rs.getString("tenCap"));
+				detai.setXacnhandangky(rs.getInt("xacnhandangky"));
+				detai.setKiemduyet(rs.getInt("kiemduyet"));
+				detai.setIdCap(rs.getInt("idCap"));
+				detai.setIdNguoiDK(idUsers);
+				listDeTai2.add(detai);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listDeTai2;
 	}
 
 }

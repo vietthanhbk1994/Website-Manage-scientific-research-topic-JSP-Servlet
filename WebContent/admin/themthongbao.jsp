@@ -8,23 +8,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
 	<%@include file="../templates/admin/inc/headerTruong.jsp"%>
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao?load=them&act=dathem" method="post" enctype="multipart/form-data" class="themthongbao">
 	
 		<label>Tên thông báo: </label>
-		<input type="text" name="tenThongBao" value="" class="textbig" required />
+		<input type="text" name="tenThongBao" value="" class="textbig"/>
 						
 		<label>Nội dung thông báo: </label>
-		<textarea name="noiDungThongBao" required class="ckeditor" ></textarea>
+		<textarea name="noiDungThongBao"></textarea>
 						
 		<label>Chế độ đăng:</label>
 		<div class="chedodang">
-			<label class="chedo">Hiển thị</label>	
+			<label>Hiển thị</label>	
 			<input type="radio" name="cheDoDang" value="1" checked/>
-			<label class="chedo">Không hiển thị</label>
+			<label>Không hiển thị</label>
 			<input type="radio" name="cheDoDang" value="0" />
 		</div>
 		<label>File đính kèm:</label>
@@ -33,8 +32,6 @@
 		<div class="tuychon">
 			<input type="submit" name="submit" value="Thêm thông báo"/>
 		</div>
-		<input type="button" value="Print" onclick="window.print()" />
-		
 	</form>
 	<%@include file="../templates/admin/inc/footerTruong.jsp"%>
 </body>

@@ -63,6 +63,7 @@ public class PublicDangKyAction extends HttpServlet {
 		Date date = new Date();
 		String DateTime = dateFormat.format(date);
 		CheckTimeBO checkTimeBO = new CheckTimeBO();
+		
 		if (checkTimeBO.checkTime(DateTime, idCap)) {
 			RequestDispatcher rd = request.getRequestDispatcher("load-form");
 			rd.forward(request, response);
