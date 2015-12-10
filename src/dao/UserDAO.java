@@ -249,4 +249,29 @@ public class UserDAO {
 		if(check == 0) return false;
 		return true;
 	}
+	public ArrayList<Users> getListThanhVien(String dsThanhVien) {
+		// TODO Auto-generated method stub
+		String arrayTV[] = dsThanhVien.split(",");
+		ArrayList<Users> listThanhVien = new ArrayList<Users>();
+		for(String soThe:arrayTV){
+			String sql = "SELECT * FROM users WHERE soThe = "+soThe;
+			try {
+				Statement stm = db.connectDB().createStatement();
+				ResultSet rs = stm.executeQuery(sql);
+				while(rs.next()){
+					Users user = new Users();
+					user.setSoThe(rs.getString("soThe"));
+					user.setFullname(rs.getString("fullName"));
+					user.setAddress(rs.getString("address"));
+					user.setDienthoai(rs.getString("dienthoai"));
+					user.setEmail(rs.getString("email"));
+					listThanhVien.add(user);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		return listThanhVien;
+	}
 }

@@ -111,15 +111,17 @@ public class PublicTHDangKyAction extends HttpServlet {
 			return;
 		}
 		String dsID = deTaiBO.convertIDThanhVien(mangtv);
+		if(deTaiBO.notSameKhoa(users.getIdKhoa(),dsID)){
+			RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=có thành viên không cùng khoa");
+			rd.forward(request, response);
+			return;
+		}
 		if(dsID==null){
 			RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=Thành viên trong danh sách không tồn tại");
 			rd.forward(request, response);
-			//response.sendRedirect("load-form?msg=Thành viên trong danh sách không tồn tại");
 			return;
 		}else{
 			if(deTaiBO.dangky(detai,dsID)){
-//				RequestDispatcher rd = request.getRequestDispatcher("welcome?msg=Thao tác thành công");
-//				rd.forward(request, response);
 				response.sendRedirect("welcome");
 			}else{
 				RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=Có lỗi trong quá trình đăng ký");
