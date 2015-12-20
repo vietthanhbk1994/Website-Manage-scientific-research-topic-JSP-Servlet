@@ -71,8 +71,6 @@ public class AdminThongBaoAction extends HttpServlet {
 		}
 		else{
 			//chuc nang them + sua
-			
-			
 			if(request.getParameter("load")!=null){
 				//them thong bao
 				if(request.getParameter("act")!=null){
@@ -88,28 +86,28 @@ public class AdminThongBaoAction extends HttpServlet {
 					try {
 						List<FileItem> formitems = upload.parseRequest(request);
 						for (FileItem fileItem : formitems) {
-							if (fileItem.isFormField()) {// khĂ¡c file
+							if (fileItem.isFormField()) {// khÄ‚Â¡c file
 								String name = fileItem.getFieldName();
 								String value = new String(fileItem.getString().getBytes("ISO-8859-1"), "UTF-8");
-								//láº¥y tá»«ng giĂ¡ trá»‹ cá»§a form
+								//lĂ¡ÂºÂ¥y tĂ¡Â»Â«ng giÄ‚Â¡ trĂ¡Â»â€¹ cĂ¡Â»Â§a form
 								switch(name){
 									case "tenThongBao": tenThongBao = value; break; 
 									case "noiDungThongBao": noiDungThongBao = value; break; 
 									case "cheDoDang": cheDo = Integer.parseInt(value); break;
 								}
-							} else { // lĂ  file
+							} else { // lÄ‚Â  file
 								String filename = fileItem.getName();
-								// Ä‘á»•i tĂªn file
+								// Ă„â€˜Ă¡Â»â€¢i tÄ‚Âªn file
 								if(fileItem != null){
 									String ext = FilenameUtils.getExtension(filename);
 									if(ext=="") continue;
 									
-									long time = System.nanoTime();// láº¥y thá»�i gian
+									long time = System.nanoTime();// lĂ¡ÂºÂ¥y thĂ¡Â»ï¿½i gian
 									dinhKemFile = "ThongBao-" + time + "." + ext;
 									
 									//System.out.println("dinhKemFile"+dinhKemFile);
 
-									// táº¡o thÆ° má»¥c upload file
+									// tĂ¡ÂºÂ¡o thĂ†Â° mĂ¡Â»Â¥c upload file
 									String uploadDir = request.getServletContext().getRealPath("") + java.io.File.separator
 											+ "files";
 									File dir = new File(uploadDir);
@@ -117,18 +115,18 @@ public class AdminThongBaoAction extends HttpServlet {
 										dir.mkdirs();
 									}
 									//out.println(uploadDir);
-									// táº¡o Ä‘Æ°á»�ng dáº«n thá»±c Ä‘áº¿n file trĂªn Ä‘Ä©a.
+									// tĂ¡ÂºÂ¡o Ă„â€˜Ă†Â°Ă¡Â»ï¿½ng dĂ¡ÂºÂ«n thĂ¡Â»Â±c Ă„â€˜Ă¡ÂºÂ¿n file trÄ‚Âªn Ă„â€˜Ă„Â©a.
 									String RealPathFile = uploadDir + File.separator + dinhKemFile;
 									linkDownload = RealPathFile;
 									//System.out.println("linkdownlaod"+linkDownload);
-									// upload file lĂªn á»• Ä‘Ä©a
+									// upload file lÄ‚Âªn Ă¡Â»â€¢ Ă„â€˜Ă„Â©a
 									File file = new File(RealPathFile);
 									fileItem.write(file);
 								} else {
 									dinhKemFile = "";
 								}
 								
-								//xĂ³a file
+								//xÄ‚Â³a file
 							}
 						}
 					} catch (FileUploadException e) {
@@ -166,7 +164,7 @@ public class AdminThongBaoAction extends HttpServlet {
 				        }
 				        else{
 				        	PrintWriter writer = response.getWriter();
-				    		write.println("Quá trình thêm dữ liệu vào Database bị lỗi. Vui lòng thử lại");
+				    		write.println("QuĂ¡ trĂ¬nh thĂªm dá»¯ liá»‡u vĂ o Database bá»‹ lá»—i. Vui lĂ²ng thá»­ láº¡i");
 				        }
 					}
 					
@@ -187,7 +185,7 @@ public class AdminThongBaoAction extends HttpServlet {
 				        }
 				        else{
 				        	PrintWriter writer = response.getWriter();
-				    		write.println("Quá trình thêm dữ liệu vào Database bị lỗi. Vui lòng thử lại");
+				    		write.println("QuĂ¡ trĂ¬nh thĂªm dá»¯ liá»‡u vĂ o Database bá»‹ lá»—i. Vui lĂ²ng thá»­ láº¡i");
 				        }
 					}
 				}
@@ -216,7 +214,7 @@ public class AdminThongBaoAction extends HttpServlet {
 					ArrayList<ThongBao> listThongBao = new ArrayList<ThongBao>();
 					listThongBao = thongBaoBO.getListThongBao();
 					request.setAttribute("listThongBao", listThongBao);
-					RequestDispatcher rd = request.getRequestDispatcher("/admin/hieuchinhthongbao.jsp?msg=Chưa chọn thông báo để xóa");
+					RequestDispatcher rd = request.getRequestDispatcher("/admin/hieuchinhthongbao.jsp?msg=ChÆ°a chá»�n thĂ´ng bĂ¡o Ä‘á»ƒ xĂ³a");
 					
 					rd.forward(request, response);
 					return;
@@ -229,8 +227,7 @@ public class AdminThongBaoAction extends HttpServlet {
 						return;
 					}
 					else{
-						write.println("Lỗi. Không thể xóa được thông báo");
-						
+						write.println("Không thể xóa. Lỗi");
 					}
 				}
 				

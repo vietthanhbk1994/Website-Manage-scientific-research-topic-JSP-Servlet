@@ -86,7 +86,7 @@ public class AdminTimKiemKhoaAction extends HttpServlet {
 			
 			CapBO capbo = new CapBO();
 			ArrayList<Cap> listCap = new ArrayList<Cap>();
-			listCap = capbo.getCapDeTai();
+			//listCap = capbo.getCapDeTai();
 			
 //--			UserBO userBO = new UserBO();
 //--			ArrayList<Users> listKhoa = userBO.getListKhoa();

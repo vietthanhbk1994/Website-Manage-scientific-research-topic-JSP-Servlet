@@ -34,8 +34,7 @@ public class PublicDangKyAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		this.doPost(request, response);
 	}
@@ -44,8 +43,7 @@ public class PublicDangKyAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
@@ -59,17 +57,22 @@ public class PublicDangKyAction extends HttpServlet {
 			return;
 		}
 		int idCap = Integer.parseInt(request.getParameter("cap"));
+		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
-		String DateTime = dateFormat.format(date);
-		CheckTimeBO checkTimeBO = new CheckTimeBO();
 		
-		if (checkTimeBO.checkTime(DateTime, idCap)) {
+		String DateTime = dateFormat.format(date);
+		
+		CheckTimeBO checkTimeBO = new CheckTimeBO();
+		int idLDK = checkTimeBO.checkTime(DateTime, idCap);
+		
+		if (idLDK!=0) {
+			request.setAttribute("idCap", idCap);
 			RequestDispatcher rd = request.getRequestDispatcher("load-form");
 			rd.forward(request, response);
 		} else {
 			RequestDispatcher rd = request
-					.getRequestDispatcher("welcome?msg=Thời gian đăng ký không hợp lệ");
+					.getRequestDispatcher("welcome?msg=Không phải trong thời gian đăng ký cấp này");
 			rd.forward(request, response);
 		}
 

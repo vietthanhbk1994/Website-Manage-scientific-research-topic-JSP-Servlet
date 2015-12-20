@@ -2,6 +2,14 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>cnpm</display-name>
   <servlet>
+    <servlet-name>publicHomeAction</servlet-name>
+    <servlet-class>action.publicHomeAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>publicHomeAction</servlet-name>
+    <url-pattern>/home-page</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>PublicLoginAction</servlet-name>
     <servlet-class>action.PublicLoginAction</servlet-class>
   </servlet>
@@ -193,14 +201,7 @@
     <servlet-name>AdminKiemDuyetAction</servlet-name>
     <url-pattern>/admin/kiemduyet</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>AdminSettingAction</servlet-name>
-    <servlet-class>action.AdminSettingAction</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminSettingAction</servlet-name>
-    <url-pattern>/admin/setting</url-pattern>
-  </servlet-mapping>
+  
   
   
 </web-app>

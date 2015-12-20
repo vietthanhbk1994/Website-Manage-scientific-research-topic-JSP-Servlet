@@ -33,11 +33,12 @@ public class UserDAO {
 					users.setTenChuyenNganh(rs.getString("tenChuyenNganh"));
 					users.setTenKhoa(rs.getString("tenKhoa"));
 					
-					System.out.println(rs.getInt("idUsers"));
+					//System.out.println(rs.getInt("idUsers"));
 					
 					listUsers.add(users);
 					
 				}
+				st.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -55,7 +56,9 @@ public class UserDAO {
 			while(rs.next()){
 				check = rs.getRow();
 			}
-			System.out.println("so hang la:"+check);
+			stm.close();
+			db.connectDB().close();
+			//System.out.println("so hang la:"+check);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,6 +91,8 @@ public class UserDAO {
 				int idKhoa = rs.getInt("idKhoa");
 				users = new Users(idUsers, role, idChuyenNganh, idKhoa, soThe, Password, fullname, address, dienthoai, email, tenChuyenNganh, tenKhoa);
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -117,6 +122,8 @@ public class UserDAO {
 					listKhoa.add(users);
 					
 				}
+				st.close();
+				db.connectDB().close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -177,6 +184,8 @@ public class UserDAO {
 		try {
 			Statement st = db.connectDB().createStatement();
 			check = st.executeUpdate(query);
+			st.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -208,6 +217,8 @@ public class UserDAO {
 				userSua.setIdChuyenNganh(rs.getInt(7));
 				userSua.setIdKhoa(rs.getInt("idKhoa"));
 			}
+			st.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -242,6 +253,8 @@ public class UserDAO {
 			ps.setInt(9, idUser);
 			
 			check = ps.executeUpdate();
+			ps.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -267,6 +280,8 @@ public class UserDAO {
 					user.setEmail(rs.getString("email"));
 					listThanhVien.add(user);
 				}
+				stm.close();
+				db.connectDB().close();
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();

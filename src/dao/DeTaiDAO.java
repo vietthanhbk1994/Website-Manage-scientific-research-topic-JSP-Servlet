@@ -15,11 +15,11 @@ import bean.Users;
 public class DeTaiDAO {
 	DataBase db = new DataBase();
 
-	public ArrayList<DeTai> timKiemDeTaiTruong(int idKhoa, String soThe, String fullname, String cap, int nam) {
+	public ArrayList<DeTai> timKiemDeTaiTruong(int idKhoa, String soThe, String fullname, int idCap, int nam) {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 		String dk0 = "", dk1 = "", dk2 = "", dk3 = "", dk4 = "";
-		String sql = "SELECT * FROM danhsachdetai,users,capdetai,chuyennganh WHERE (users.idUsers=danhsachdetai.idUsers) AND (danhsachdetai.idCap = capdetai.idCap) AND (users.idChuyenNganh = chuyennganh.idChuyenNganh) AND (kiemduyet != 0)";
+		String sql = "SELECT * FROM danhsachdetai,users,capdetai,chuyennganh WHERE (users.idUsers=danhsachdetai.idUsers) AND (users.idChuyenNganh = chuyennganh.idChuyenNganh) AND (danhsachdetai.idCap = capdetai.idCap) AND (kiemduyet != 0)";
 
 		if (idKhoa != 0) {
 			dk0 = " AND chuyennganh.idKhoa =" + idKhoa;
@@ -33,10 +33,10 @@ public class DeTaiDAO {
 		}
 
 		if (nam != 0) {
-			dk3 = " AND capdetai.nam = " + nam;
+			dk3 = " AND danhsachdetai.ngaydangky LIKE '%" + nam +"%'";
 		}
-		if (cap != "") {
-			dk4 = " AND capdetai.tenCap = " + cap;
+		if (idCap != 0) {
+			dk4 = " AND capdetai.idCap = " + idCap;
 		}
 
 		sql += dk0 + dk1 + dk2 + dk3 + dk4;
@@ -80,6 +80,8 @@ public class DeTaiDAO {
 
 				listDeTai.add(detai);
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -151,6 +153,8 @@ public class DeTaiDAO {
 
 				listDeTai.add(detai);
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -200,6 +204,8 @@ public class DeTaiDAO {
 
 				listDeTai.add(detai);
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -248,6 +254,8 @@ public class DeTaiDAO {
 
 				listDeTai.add(detai);
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -275,6 +283,8 @@ public class DeTaiDAO {
 				// System.out.println("List in
 				// dao"+ListDeTai.get(i++).getTenDeTai());
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -291,6 +301,8 @@ public class DeTaiDAO {
 				if (rscheck.last() == false) {
 					return false;
 				}
+				stmcheck.close();
+				db.connectDB().close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -315,6 +327,8 @@ public class DeTaiDAO {
 						dsIDThanhVien += rscheck.getInt(1);
 					}
 				}
+				stmcheck.close();
+				db.connectDB().close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -340,6 +354,8 @@ public class DeTaiDAO {
 						dsSoThe += rscheck.getString(1);
 					}
 				}
+				stmcheck.close();
+				db.connectDB().close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -379,6 +395,8 @@ public class DeTaiDAO {
 			pstm.setString(19, detai.getTinhcapthiet());
 			pstm.setString(20, detai.getMuctieu());
 			check = pstm.executeUpdate();
+			pstm.close();
+			db.connectDB().close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -394,6 +412,8 @@ public class DeTaiDAO {
 				while (rs2.next()) {
 					maxID = rs2.getInt(1);
 				}
+				stm2.close();
+				db.connectDB().close();
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -413,6 +433,8 @@ public class DeTaiDAO {
 					if (check == 0) {
 						return false;
 					}
+					pstm2.close();
+					db.connectDB().close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

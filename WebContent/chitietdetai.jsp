@@ -171,7 +171,7 @@
 			<textarea name="danhsachtv" placeholder="102120252,102120258..." <%=disable %>><%if(danhsachtv!=null){out.println(danhsachtv);}%></textarea>
 				<h4 style = "color:red;">Thông tin người đề xuất</h4>
 				<br />
-				<table border="1">
+				<table class="table table-hover">
 					<tr>
 						<th>Số Thẻ</th>
 						<th>Full Name</th>
@@ -189,7 +189,7 @@
 				</table>
 				<h4 style = "color:red;">Danh sách thành viên tham gia</h4>
 				<br />
-				<table border="1">
+				<table class="table table-hover">
 					<tr>
 						<th>Số Thẻ</th>
 						<th>Full Name</th>

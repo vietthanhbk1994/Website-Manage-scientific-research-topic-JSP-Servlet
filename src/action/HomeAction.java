@@ -51,6 +51,8 @@ public class HomeAction extends HttpServlet {
 		ThongBaoBO thongBaoBO = new ThongBaoBO();
 		ArrayList<ThongBao> listThongBao = new ArrayList<ThongBao>();
 		listThongBao = thongBaoBO.getListThongBao();
+		
+		
 		request.setAttribute("listThongBao", listThongBao);
 	
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");

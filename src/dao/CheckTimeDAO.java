@@ -5,17 +5,19 @@ import java.sql.Statement;
 
 public class CheckTimeDAO {
 	DataBase db = new DataBase();
-	public boolean checkTime(String dateTime,int idCap) {
-		String sql = "SELECT * FROM capdetai WHERE idCap="+idCap+" AND ('"+dateTime+"' BETWEEN timeOpen AND timeClose)";
-		boolean check=false;
+	public int checkTime(String dateTime,int idCap) {
+		String sql = "SELECT * FROM luotdangky WHERE idCap="+idCap+" AND ('"+dateTime+"' BETWEEN timeOpen AND timeClose)";
+		int idLDK=0;
 		try {
 			Statement stm = db.connectDB().createStatement();
 			ResultSet rs = stm.executeQuery(sql);
-			check=rs.last();
+			while(rs.next()){
+				idLDK = rs.getInt("idLDK"); 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return check;
+		return idLDK;
 	}
 
 }

@@ -31,6 +31,8 @@ public class KhoaDAO {
 				chuyenNganh.setTenKhoa(rs.getString("tenKhoa"));
 				listChuyenNganh.add(chuyenNganh);
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -51,6 +53,8 @@ public class KhoaDAO {
 				khoa = khoadao.getKhoa(idKhoa);
 				listKhoa.add(khoa);
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			
 			e.printStackTrace();

@@ -20,7 +20,7 @@
 	<a href="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao?load=them" title="" class="themthongbao">Thêm thông báo</a>
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao" method="get">
 	
-	<table>
+	<table class="table table-hover">
 		<tr>
 			<th>ID thông báo</th>
 			<th>Ngày đăng</th>

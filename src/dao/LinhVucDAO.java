@@ -20,6 +20,8 @@ public class LinhVucDAO {
 				Linhvuc lv = new Linhvuc(idLinhvuc,tenLinhVuc);
 				ListLinhVuc.add(lv);
 			}
+			stm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

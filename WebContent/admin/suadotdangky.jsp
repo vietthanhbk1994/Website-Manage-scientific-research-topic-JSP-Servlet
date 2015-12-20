@@ -1,3 +1,4 @@
+<%@page import="bean.LuotDangKy"%>
 <%@page import="bean.Cap"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,20 +12,25 @@
 <body>
 	<%@include file="../templates/admin/inc/headerTruong.jsp"%>
 	<%
-		Cap cap = new Cap();
-		cap = (Cap) request.getAttribute("cap");
+		LuotDangKy luotDangKy = new LuotDangKy();
+		luotDangKy = (LuotDangKy) request.getAttribute("luotDangKy");
+		
+		
+		ArrayList<Cap> listCap = new ArrayList<Cap>();
+		listCap = (ArrayList<Cap>) request.getAttribute("listCap");
 	%>
-	<form action="khoa-dang-ky?load=sua&act=dasua&id=<%=cap.getIdCap()%>" method="post" enctype="multipart/form-data" >
+	<form action="khoa-dang-ky?load=sua&act=dasua&id= <%= luotDangKy.getIdLuotDangKy() %>" method="post" enctype="multipart/form-data" >
 		<label>Đăng ký cấp: </label>
 		<select name="cap">
-			<option value="Cấp trường">Cấp trường</option>
-			<option value="Cấp đại học Đà Nẵng">Cấp đại học Đà Nẵng</option>
-			<option value="Cấp bộ">Cấp bộ</option>
-			<option value="Cấp nhà nước">Cấp nhà nước</option>
+		<%
+			for(Cap eachCap : listCap){
+		%>
+			<option value="<%=eachCap.getIdCap()%>"><%= eachCap.getTenCap()%></option>
+			<%} %>
 		</select>
 		
 		<label>Tên đợt đăng ký: </label>
-		<input type="text" name="tenThongBao" value="<%=cap.getTenCap() %>" class="textbig"/>
+		<input type="text" name="tenThongBao" value="" class="textbig" />
 						
 		<label>Nội dung chi tiết: </label>
 		<textarea name="noiDungThongBao"></textarea>

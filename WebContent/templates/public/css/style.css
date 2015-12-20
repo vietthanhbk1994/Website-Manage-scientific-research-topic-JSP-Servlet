@@ -16,6 +16,9 @@ div.main-body{
 .banner label{
 	display: inline;
 }
+.dangnhap{
+	 display: inline;
+}
 .banner h4{
     font-weight: bold;
     text-transform: uppercase;
@@ -143,4 +146,8 @@ a{
 }
 .menundk{
 	padding-bottom:20px;
+}
+form{
+	padding-top:20px;
+	padding-bottom:30px;
 }

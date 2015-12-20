@@ -17,6 +17,7 @@ import bean.DeTai;
 import bean.Users;
 import bo.CapBO;
 import bo.DeTaiBO;
+import bo.LuotDangKyBO;
 import bo.UserBO;
 
 /**
@@ -60,33 +61,22 @@ public class AdminListDeTaiKhoaAction extends HttpServlet {
 			
 		}
 		else{
-//			UserBO userBO = new UserBO();
-//			ArrayList<Users> listKhoa = userBO.getListKhoa();
-			
 			int idKhoa = userLogin.getIdKhoa();
 			ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 			DeTaiBO detaiBO = new DeTaiBO();
 			
-			
 			CapBO capbo = new CapBO();
 			ArrayList<Cap> listCap = new ArrayList<Cap>();
-			listCap = capbo.getCapDeTai();
+			listCap = capbo.getListCap();
 			
-			//System.out.println("Da o day");
-//			for(DeTai eachDeTai: listDeTai){
-//				System.out.println("ten de tai:"+eachDeTai.getTenDeTai());
-//			}
-			
-			//request.setAttribute("listKhoa", listKhoa);
-			request.setAttribute("listCap", listCap);
+			LuotDangKyBO luotDangKyBO = new LuotDangKyBO();
+			int [] nam= luotDangKyBO.getNam();
 			
 			
 			String submit = request.getParameter("xacnhan");
 			if(submit != null){
-				System.out.println("1. vao day rui");
 				String listXacNhan[] = request.getParameterValues("checkbox");
 				if(listXacNhan!=null){
-					System.out.println("2. vao day rui");
 					StringBuilder listxacnhan = new StringBuilder("");
 					for(String idDeTai:listXacNhan){
 						listxacnhan.append(idDeTai+"||");
@@ -95,11 +85,10 @@ public class AdminListDeTaiKhoaAction extends HttpServlet {
 					listxacnhan.deleteCharAt(listxacnhan.length()-1);
 					
 					if(detaiBO.xacnhanKhoa(listxacnhan)){
-						System.out.println("3. vao day rui");
-						//request.setAttribute("listDeTai", detaiBO.getListDeTaiKhoa(userLogin.getRole()));
 						listDeTai = detaiBO.getListDeTaiKhoa(idKhoa);
-						
 						request.setAttribute("listDeTai", listDeTai);
+						request.setAttribute("nam", nam);
+						request.setAttribute("listCap", listCap);
 						RequestDispatcher rd = request.getRequestDispatcher("quan-tri-khoa.jsp");
 						rd.forward(request, response);
 						return;
@@ -108,7 +97,8 @@ public class AdminListDeTaiKhoaAction extends HttpServlet {
 			}
 			listDeTai = detaiBO.getListDeTaiKhoa(idKhoa);
 			request.setAttribute("listDeTai", listDeTai);
-			//request.setAttribute("listDeTai", detaiBO.getListDeTaiKhoa(userLogin.getRole()));
+			request.setAttribute("nam", nam);
+			request.setAttribute("listCap", listCap);
 			RequestDispatcher rd = request.getRequestDispatcher("quan-tri-khoa.jsp");
 			rd.forward(request, response);
 		}

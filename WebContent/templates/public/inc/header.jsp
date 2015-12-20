@@ -6,9 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="<%=request.getContextPath()%>/templates/public/css/style.css" rel="stylesheet" type="text/css" />
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="<%=request.getContextPath()%>/templates/public/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/library/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/library/js/jquery.validate.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/library/ckeditor/ckeditor.js"></script>
@@ -29,7 +28,7 @@
 							Users users = (Users) session.getAttribute("users");
 							if (users == null) {
 						%>
-						<form method="post" action="login" id="mh0">
+						<form method="post" action="login" id="mh0" class="dangnhap">
 							<div class="user">
 								<label>Số thẻ: </label> <input type="text" class="lg0" name="username" id="u0" />
 							</div>
@@ -57,39 +56,39 @@
 				<%
 					if (users != null && users.getRole() == 0) {
 				%>
-				<ul class="nav nav-pills">
-					<li role="presentation" class="">
-						<a  href="<%=request.getContextPath()%>/welcome" class="btn btn-info" role="button">Tình trạng đăng ký</a>
-					</li>
-					<li role="presentation" class="">
-						<a  href="<%=request.getContextPath()%>/thong-tin-ca-nhan" class="btn btn-info" role="button">Thông tin cá nhân</a>
-					</li>
-					<li>
-						<div class="dropdown">
-							<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Đăng ký đề tài
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<%
-							ArrayList<Cap> ListCap = (ArrayList<Cap>) request.getAttribute("ListCap");
-							if (ListCap != null) {
-								for (Cap eachCap : ListCap) {
-							%>
-								<li>
-									<a href="<%=request.getContextPath()%>/dang-ky?cap=<%=eachCap.getIdCap()%>"
-										title="" target="_self"> <%=eachCap.getTenCap()%>
-									</a>
-								</li>
-							<%}%>
-							
-							</ul>
-						</div>
-					</li>
-				</ul>
+				<div>
+					<ul class="nav nav-pills">
+						<li role="presentation" class="">
+							<a  href="<%=request.getContextPath()%>/welcome" class="btn btn-info" role="button">Tình trạng đăng ký</a>
+						</li>
+						<li role="presentation" class="">
+							<a  href="<%=request.getContextPath()%>/thong-tin-ca-nhan" class="btn btn-info" role="button">Thông tin cá nhân</a>
+						</li>
+						<li>
+							<div class="dropdown">
+								<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    Đăng ký đề tài
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<%
+								ArrayList<Cap> ListCap = (ArrayList<Cap>) request.getAttribute("ListCap");
+								if (ListCap != null) {
+									for (Cap eachCap : ListCap) {
+								%>
+									<li>
+										<a href="<%=request.getContextPath()%>/dang-ky?cap=<%=eachCap.getIdCap()%>" title="" target="_self"> <%=eachCap.getTenCap()%></a>
+									</li>
+								<%}}%>
+								
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
 				<%
-					}
+					
 					}
 				%>
 			</div>
-			<div class="main-body">
+<div class="main-body">

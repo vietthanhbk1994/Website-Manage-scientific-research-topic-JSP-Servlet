@@ -1,7 +1,7 @@
 package bean;
 
 public class DeTai {
-	private int idDeTai, idLinhVuc, idCap, soluongtv, kinhphidukien,
+	private int idDeTai, idLinhVuc, idLDK, idCap, soluongtv, kinhphidukien,
 			thoigiandukien, idChiTiet, idUsers, kiemduyet, xacnhandangky,
 			idKhoa, idChuyenNganh,idNguoiDK;
 	public DeTai(int idNguoiDK) {
@@ -38,6 +38,10 @@ public class DeTai {
 		this.idLinhVuc = idLinhVuc;
 	}
 
+	public int getIdLDK() {
+		return idLDK;
+	}
+	
 	public int getIdCap() {
 		return idCap;
 	}
@@ -47,18 +51,19 @@ public class DeTai {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DeTai(int idDeTai, int idLinhVuc, int idCap, int soluongtv,
+	public DeTai(int idDeTai, int idLinhVuc, int idLDK, int soluongtv,
 			int kinhphidukien, int thoigiandukien, int idChiTiet, int idUsers,
 			int kiemduyet, int xacnhandangky, int idKhoa, int idChuyenNganh,
 			String tenDeTai, String ngaydangky, String danhsachtv,
 			String noidung, String ketquadukien, String sanphamkhoahoc,
 			String sanphamungdung, String sanphamdaotao, String hieuquadukien,
 			String tenKhoa, String tenCap, String tenChuyenNganh,
-			String tenLinhVuc) {
+			String tenLinhVuc, int idCap) {
 		super();
+		this.idCap = idCap;
 		this.idDeTai = idDeTai;
 		this.idLinhVuc = idLinhVuc;
-		this.idCap = idCap;
+		this.idLDK = idLDK;
 		this.soluongtv = soluongtv;
 		this.kinhphidukien = kinhphidukien;
 		this.thoigiandukien = thoigiandukien;
@@ -83,10 +88,14 @@ public class DeTai {
 		this.tenLinhVuc = tenLinhVuc;
 	}
 
+	public void setIdLDK(int idLDK) {
+		this.idLDK = idLDK;
+	}
+	
 	public void setIdCap(int idCap) {
 		this.idCap = idCap;
 	}
-
+	
 	public int getSoluongtv() {
 		return soluongtv;
 	}

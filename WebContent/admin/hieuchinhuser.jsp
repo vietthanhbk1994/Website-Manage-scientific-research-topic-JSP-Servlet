@@ -22,7 +22,7 @@
 	<br />
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-user" method="get">
 	
-	<table>
+	<table class="table table-hover">
 		<tr>
 			<th>ID User</th>
 			<th>Tên User</th>

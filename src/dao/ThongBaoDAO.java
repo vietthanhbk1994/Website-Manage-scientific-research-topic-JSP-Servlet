@@ -30,6 +30,8 @@ public class ThongBaoDAO {
 		try {
 			Statement st = db.connectDB().createStatement();
 			check = st.executeUpdate(query);
+			st.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,6 +48,8 @@ public class ThongBaoDAO {
 		try {
 			Statement st = db.connectDB().createStatement();
 			check = st.executeUpdate(query);
+			st.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,6 +78,8 @@ public class ThongBaoDAO {
 			ps.setString(5, dinhKemFile);
 			ps.setString(6, linkDownload);
 			check = ps.executeUpdate();
+			ps.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -103,6 +109,8 @@ public class ThongBaoDAO {
 				listThongBao.add(thongBao);
 				
 			}
+			st.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,6 +136,8 @@ public class ThongBaoDAO {
 					thongBaoSua = new ThongBao(idThongBao,cheDo,tenThongBao,noiDung,ngayDang,dinhKemFile,linkDownload);
 					
 				}
+				st.close();
+				db.connectDB().close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -149,6 +159,8 @@ public class ThongBaoDAO {
 			pstm.setString(6, news.getLinkDownload());
 			pstm.setInt(7, news.getIdThongBao());
 			check = pstm.executeUpdate();
+			pstm.close();
+			db.connectDB().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

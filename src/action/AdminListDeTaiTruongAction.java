@@ -17,6 +17,7 @@ import bean.DeTai;
 import bean.Users;
 import bo.CapBO;
 import bo.DeTaiBO;
+import bo.LuotDangKyBO;
 import bo.UserBO;
 
 /**
@@ -70,13 +71,12 @@ public class AdminListDeTaiTruongAction extends HttpServlet {
 			
 			CapBO capbo = new CapBO();
 			ArrayList<Cap> listCap = new ArrayList<Cap>();
-			listCap = capbo.getCapDeTai();
+			listCap = capbo.getListCap();
 			
-			//System.out.println("Da o day");
-//			for(DeTai eachDeTai: listDeTai){
-//				System.out.println("ten de tai:"+eachDeTai.getTenDeTai());
-//			}
+			LuotDangKyBO luotDangKyBO = new LuotDangKyBO();
+			int [] nam= luotDangKyBO.getNam();
 			
+			request.setAttribute("nam", nam);
 			request.setAttribute("listKhoa", listKhoa);
 			request.setAttribute("listCap", listCap);
 			request.setAttribute("listDeTai", listDeTai);

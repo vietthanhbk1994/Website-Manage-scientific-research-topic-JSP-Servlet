@@ -67,21 +67,21 @@ public class PublicXacNhanDKAction extends HttpServlet {
 		Date date = new Date();
 		String DateTime = dateFormat.format(date);
 		CheckTimeBO checkTimeBO = new CheckTimeBO();
-		if (checkTimeBO.checkTime(DateTime, idCap)) {
+		if (checkTimeBO.checkTime(DateTime, idCap)!=0) {
 			int idDeTai = Integer.parseInt(request.getParameter("detai"));
 //			out.println("done");
 			if(deTaiBO.xacNhanDK(idDeTai)){
 				response.sendRedirect("welcome");
 			}else{
 				RequestDispatcher rd = request
-						.getRequestDispatcher("welcome?msg=xảy ra lỗi");
+						.getRequestDispatcher("welcome?msg=Xảy ra lỗi");
 				rd.forward(request, response);
 			}
 			return;
 		} else {
 			response.sendRedirect("welcome?msg=Het han dang ky");
 //			RequestDispatcher rd = request
-//					.getRequestDispatcher("welcome?msg=Hết hạn đăng ký");
+//					.getRequestDispatcher("welcome?msg=Háº¿t háº¡n Ä‘Äƒng kĂ½");
 //			rd.forward(request, response);
 		}
 		

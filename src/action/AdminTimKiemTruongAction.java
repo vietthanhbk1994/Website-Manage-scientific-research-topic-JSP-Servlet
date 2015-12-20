@@ -21,6 +21,7 @@ import bean.ThongBao;
 import bean.Users;
 import bo.CapBO;
 import bo.DeTaiBO;
+import bo.LuotDangKyBO;
 import bo.ThongBaoBO;
 import bo.UserBO;
 
@@ -65,57 +66,54 @@ public class AdminTimKiemTruongAction extends HttpServlet {
 //			PrintWriter pr = response.getWriter();
 //			pr.println("da vao day");
 			
-			
-			int idKhoa = 0;
+			int idKhoa = 0; 
 			idKhoa = Integer.parseInt(request.getParameter("idKhoa"));
-			
-			System.out.println("id Khoa:"+idKhoa);
+			int idCap = 0;
+			idCap = Integer.parseInt(request.getParameter("cap"));
+			int nam = 0;
+			nam = Integer.parseInt(request.getParameter("nam"));
 			
 			String soThe =""; 
 			soThe = request.getParameter("sothe");
 			
-			System.out.println("soThe:"+soThe);
-			
 			String fullname = ""; 
 			fullname = request.getParameter("fullname");
 			
-			System.out.println("fullname:"+fullname);
+			String namSearch = String.valueOf(nam);
 			
-			int nam =0;
-			nam = Integer.parseInt(request.getParameter("nam"));
+			DeTai deTaiSearch = new DeTai();
+			Users userSearch = new Users();
+			userSearch.setSoThe(soThe);
+			userSearch.setFullname(fullname);
 			
-			System.out.println("nam:"+nam);
-			
-			String cap ="";
-			cap = request.getParameter("cap");
-			
-			System.out.println("cap:"+cap);
+			deTaiSearch.setUsers(userSearch);
+			deTaiSearch.setIdCap(idCap);
+			deTaiSearch.setIdKhoa(idKhoa);
+			deTaiSearch.setNgaydangky(namSearch);
 			
 			DeTaiBO detaiBO = new DeTaiBO();
 			ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 			
-			
-			
-			
-			
-			
-			
-			
-			listDeTai = detaiBO.timKiemDeTaiTruong(idKhoa, soThe, fullname, cap, nam);
+			listDeTai = detaiBO.timKiemDeTaiTruong(idKhoa, soThe, fullname, idCap, nam);
 			
 			CapBO capbo = new CapBO();
 			ArrayList<Cap> listCap = new ArrayList<Cap>();
-			listCap = capbo.getCapDeTai();
+			listCap = capbo.getListCap();
+			//listCap = capbo.getCapDeTai();
 			
 			UserBO userBO = new UserBO();
 			ArrayList<Users> listKhoa = userBO.getListKhoa();
 			
+			LuotDangKyBO luotDangKyBO = new LuotDangKyBO();
+			int [] namShow= luotDangKyBO.getNam();
+			
+			request.setAttribute("deTaiSearch", deTaiSearch);
+			request.setAttribute("nam", namShow);
 			request.setAttribute("listKhoa", listKhoa);
 			request.setAttribute("listCap", listCap);
 			request.setAttribute("listDeTai", listDeTai);
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/quan-tri-truong.jsp");
 			rd.forward(request, response);
-			
 		}
 	}
 

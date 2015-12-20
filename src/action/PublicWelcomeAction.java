@@ -2,6 +2,7 @@ package action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Cap;
 import bean.Users;
+import bo.CapBO;
 import bo.DeTaiBO;
-import bo.ListCapBO;
+import bo.LuotDangKyBO;
 
 /**
  * Servlet implementation class PublicWelcomeAction
@@ -57,8 +60,9 @@ public class PublicWelcomeAction extends HttpServlet {
 		//load de tai dang ky roi
 		int idUsers = users.getIdUser();
 		DeTaiBO deTaiBO = new DeTaiBO();
-		ListCapBO listCapBO = new ListCapBO();
-		request.setAttribute("ListCap", listCapBO.getListCap());
+		CapBO capbo = new CapBO();
+		
+		request.setAttribute("ListCap", capbo.getListCap());
 		request.setAttribute("ListDeTai", deTaiBO.getListDeTai(idUsers));
 		request.setAttribute("listDeTai2", deTaiBO.getListDeTai2(idUsers));
 		RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");

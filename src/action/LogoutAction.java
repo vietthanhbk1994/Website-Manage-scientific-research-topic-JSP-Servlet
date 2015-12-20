@@ -43,7 +43,11 @@ public class LogoutAction extends HttpServlet {
 		if(users!=null){
 			session.invalidate();
 			response.sendRedirect("thong-bao");
+			return;
 		}
+		RequestDispatcher rd = request.getRequestDispatcher("thong-bao");
+		rd.forward(request, response);
+		
 	}
 
 	/**

@@ -1,7 +1,10 @@
 eclipse.preferences.version=1
-encoding//WebContent/chitietdetai.jsp=UTF-8
-encoding//WebContent/dangky.jsp=UTF-8
-encoding//WebContent/index.jsp=UTF-8
-encoding//WebContent/welcome.jsp=UTF-8
+encoding//WebContent/admin/khoadangky.jsp=UTF-8
+encoding//WebContent/admin/taodotdangky.jsp=UTF-8
+encoding//WebContent/admin/themuser.jsp=UTF-8
+encoding//src/action/PublicDangKyAction.java=UTF-8
+encoding//src/action/PublicLoginAction.java=UTF-8
+encoding//src/action/PublicTHDangKyAction.java=UTF-8
+encoding//src/action/PublicWelcomeAction.java=UTF-8
+encoding//src/dao/excel.java=UTF-8
 encoding/<project>=UTF-8
-encoding/WebContent=UTF-8

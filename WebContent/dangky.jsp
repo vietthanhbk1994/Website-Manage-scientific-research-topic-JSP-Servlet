@@ -5,7 +5,7 @@
 <%@include file="templates/public/inc/header.jsp"%>
 <div class="frm-dangky">
 	<%
-		int idCap = Integer.parseInt(request.getParameter("cap"));
+		int idCap = (int) request.getAttribute("idCap");
 		String msg = request.getParameter("msg");
 		if (msg != null) {
 			out.println("<h4 style = 'color:red'>" + msg + "</h4>");
@@ -44,10 +44,10 @@
 	%>
 	<h2 class="tieudedk">ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC</h2>
 	<div class="frm-dktruong">
-		<form name="frm-dktruong" method="post" action="thuc-hien-dang-ky?cap=<%=idCap%>">
+		<form name="frm-dktruong" method="post" action="thuc-hien-dang-ky?idCap=<%=idCap%>">
 			<div class="tendetai">
 				<label class="">1. Tên đề tài:</label> <input type="text"
-					name="tendetai" value="<%if(tendetai!=null){out.println(tendetai);}%>" />
+					name="tendetai" value="<%if(tendetai!=null){out.println(tendetai);}%>" required="required"/>
 			</div>
 			<label class="">2. Lĩnh vực nghiên cứu:</label>
 			<div class="linhvuc">
@@ -68,7 +68,7 @@
 							}
 				%>
 				<label><%=tenLinhvuc%></label> <input type="radio" name="linhvuc"
-					value="<%=idLinhvuc%>" <%=checked %> />
+					value="<%=idLinhvuc%>" <%=checked %> required="required"/>
 				<%
 					}
 					}
@@ -77,19 +77,19 @@
 			<div class="tinhcapthiet">
 				<label class="">3. Tính cấp thiết:</label>
 
-				<textarea name="tinhcapthiet"><%if(tinhcapthiet!=null){out.println(tinhcapthiet);}%></textarea>
+				<textarea name="tinhcapthiet" required="required"><%if(tinhcapthiet!=null){out.println(tinhcapthiet);}%></textarea>
 			</div>
 			<div class="muctieu">
 
 				<label class="">4. Mục tiêu:</label>
 
-				<textarea name="muctieu"><%if(muctieu!=null){out.println(muctieu);}%></textarea>
+				<textarea name="muctieu" required="required"><%if(muctieu!=null){out.println(muctieu);}%></textarea>
 			</div>
 			<div class="ndchinh">
 
 				<label class="">5. Nội dung chính:</label>
 
-				<textarea name="ndchinh"><%if(ndchinh!=null){out.println(ndchinh);}%></textarea>
+				<textarea name="ndchinh" required="required"><%if(ndchinh!=null){out.println(ndchinh);}%></textarea>
 			</div>
 			<div class="spvakq">
 
@@ -99,23 +99,23 @@
 					<div class="ketqua">
 						<label class="">6.1 Kết quả dự kiến:</label>
 
-						<textarea name="ketqua"><%if(ketqua!=null){out.println(ketqua);} %></textarea>
+						<textarea name="ketqua" required="required"><%if(ketqua!=null){out.println(ketqua);} %></textarea>
 					</div>
 					<div class="sanpham">
 						<label class="">6.2 Sản phẩm</label>
 						<ul class="ndsanpham">
 							<li class="spkhoahoc"><label class="tentd2">Sản phẩm
 									khoa học:</label> 
-									<textarea name="spkhoahoc" placeholder="Số bài báo khoa học đăng trên tạp chí nước ngoài, trong nước, báo cáo khoa học"><%if(spkhoahoc!=null){out.println(spkhoahoc);}%></textarea>
+									<textarea name="spkhoahoc" placeholder="Số bài báo khoa học đăng trên tạp chí nước ngoài, trong nước, báo cáo khoa học" required="required"><%if(spkhoahoc!=null){out.println(spkhoahoc);}%></textarea>
 							</li>
 
 							<li class="spdaotao"><label class="tentd2">Sản phẩm
 									đào tạo:</label> <textarea name="spdaotao"
-									placeholder="Số lượng cao học, số lượng sinh viên tham gia"><%if(spdaotao!=null){out.println(spdaotao);} %></textarea>
+									placeholder="Số lượng cao học, số lượng sinh viên tham gia" required="required"><%if(spdaotao!=null){out.println(spdaotao);} %></textarea>
 							</li>
 							<li class="spungdung"><label class="tentd2">Sản phẩm
 									ứng dụng:</label> 
-									<textarea name="spungdung" placeholder="Mô tả tóm tắt về sản phẩm dự kiến, phạm vi, khả năng và địa chỉ ứng dụng,..."><%if(spungdung!=null){out.println(spungdung);}%></textarea>
+									<textarea name="spungdung" placeholder="Mô tả tóm tắt về sản phẩm dự kiến, phạm vi, khả năng và địa chỉ ứng dụng,..." required="required"><%if(spungdung!=null){out.println(spungdung);}%></textarea>
 							</li>
 						</ul>
 					</div>
@@ -124,21 +124,22 @@
 			<div class="hieuquadk">
 				<label>7. Hiệu quả dự kiến:</label>
 
-				<textarea name="hieuquadk"><%if(hieuquadk!=null){out.println(hieuquadk);}%></textarea>
+				<textarea name="hieuquadk" required="required"><%if(hieuquadk!=null){out.println(hieuquadk);}%></textarea>
 			</div>
 			<div class="yeucaukinhphi">
-				<label>8. Nhu cầu kinh phí dự kiến:</label> <input type="text"
-					name="yeucaukinhphi" value = "<%if(yeucaukinhphi!=0){out.println(yeucaukinhphi);}%>" /> VNĐ
+				<label>8. Nhu cầu kinh phí dự kiến:</label>
+				 <input type="number" name="yeucaukinhphi" value = "<%if(yeucaukinhphi!=0){out.println(yeucaukinhphi);}%>" required="required"  style="width:140px" /> VNĐ
 			</div>
 			<div class="thoigian">
-				<label>9. Thời gian nghiên cứu dự kiến:</label> <input type="text"
-					name="thoigian" value = "<%if(thoigian!=0){out.println(thoigian);}%>" /> Ngày
+				<label>9. Thời gian nghiên cứu dự kiến:</label> 
+				<input type="number" name="thoigian" value = "<%if(thoigian!=0){out.println(thoigian);}%>" required="required"  style="width:60px" /> Ngày
 			</div>
-			<label class="tentd2">10. Danh sách nghiên cứu sinh</label> <label>Số
-				lượng nghiên cứu sinh:</label> <input type="text" name="slntv" value="<%if(slntv!=0){out.println(slntv);}%>" />
-			Người <label>Nhập lần lượt số thẻ từng nghiên cứu sinh bao
-				gồm người đăng ký:</label>
-			<textarea name="danhsachtv" placeholder="102120252,102120258..."><%if(danhsachtv!=null){out.println(danhsachtv);}%></textarea>
+			<label class="tentd2">10. Danh sách nghiên cứu sinh</label> 
+			<label>Số lượng nghiên cứu sinh:</label> 
+				<input type="number" name="slntv" value="<%if(slntv!=0){out.println(slntv);}%>" required="required" style="width:50px"/>Người 
+				<br />
+				<label>Nhập lần lượt số thẻ từng nghiên cứu sinh bao gồm người đăng ký:</label>
+			<textarea name="danhsachtv" placeholder="102120252,102120258..." required="required"><%if(danhsachtv!=null){out.println(danhsachtv);}%></textarea>
 
 			<div class="tuychon">
 

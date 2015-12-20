@@ -1,3 +1,4 @@
+<%@page import="bean.LuotDangKy"%>
 <%@page import="bean.Cap"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,14 +11,19 @@
 </head>
 <body>
 	<%@include file="../templates/admin/inc/headerTruong.jsp"%>
+	<%
+		ArrayList<Cap> listCap = new ArrayList<Cap>();
+		listCap = (ArrayList<Cap>) request.getAttribute("listCap");
 	
+	%>
 	<form action="khoa-dang-ky?load=tao&act=datao" method="post" enctype="multipart/form-data" >
 		<label>Đăng ký cấp: </label>
 		<select name="cap">
-			<option value="Cấp trường">Cấp trường</option>
-			<option value="Cấp đại học Đà Nẵng">Cấp đại học Đà Nẵng</option>
-			<option value="Cấp bộ">Cấp bộ</option>
-			<option value="Cấp nhà nước">Cấp nhà nước</option>
+			<%
+			for(Cap eachCap : listCap){
+			%>
+			<option value="<%=eachCap.getIdCap()%>"><%= eachCap.getTenCap()%></option>
+			<%} %>
 		</select>
 		
 		<label>Tên đợt đăng ký: </label>

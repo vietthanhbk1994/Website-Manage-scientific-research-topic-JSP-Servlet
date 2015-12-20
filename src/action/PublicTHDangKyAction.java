@@ -59,8 +59,8 @@ public class PublicTHDangKyAction extends HttpServlet {
 		if(submit.equals("Đăng ký")){
 			xacnhandangky = 1;
 		}
-		String tendetai = new String(request.getParameter("tendetai").getBytes("ISO-8859-1"),"UTF-8");
-		int idCap = Integer.parseInt(request.getParameter("cap"));
+		String tendetai = request.getParameter("tendetai");
+		int idCap = Integer.parseInt(request.getParameter("idCap"));
 		int idLinhVuc = Integer.parseInt(request.getParameter("linhvuc"));
 		String tinhcapthiet = request.getParameter("tinhcapthiet");
 		String muctieu = request.getParameter("muctieu");

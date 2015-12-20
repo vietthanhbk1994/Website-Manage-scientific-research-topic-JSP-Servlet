@@ -29,11 +29,12 @@ $(document).ready(function() {
 		ArrayList<Cap> listCap = new ArrayList<Cap>();
 		listCap = (ArrayList<Cap>) request.getAttribute("listCap");
 		
+		int [] nam= (int []) request.getAttribute("nam");
 		//ArrayList<Users> listKhoa = new ArrayList<Users>();
 		//listKhoa = (ArrayList<Users>) request.getAttribute("listKhoa");
 		int tt=1;
 		Users usersLogin = (Users)session.getAttribute("users");
-		if(listDeTai.size()!=0){
+		
 	%>
 	<h3>Danh sách đề tài khoa <%= usersLogin.getFullname()%></h3>
 	<form action="tim-kiem-khoa" method="post">
@@ -43,27 +44,23 @@ $(document).ready(function() {
 		<label>Năm:</label>
 		
 		<select name="nam">
-		<option value="<%=listCap.get(0).getNam() %>"><%=listCap.get(0).getNam() %></option>
 			<%
-			if(listCap.size()>1)
-				for(int i=1; i <listCap.size();i++){
-					if(listCap.get(i).getNam()==listCap.get(i-1).getNam()) continue;
+				for(int i=0; i <nam.length;i++){
+					if(nam[i]==0) break;
 			%>
-		  			<option value="<%=listCap.get(i).getNam() %>"><%=listCap.get(i).getNam() %></option>
-				<%
-				 }
-				%>
-		  
+		  			<option value="<%=nam[i] %>"><%=nam[i] %></option>
+			<%}%>
 		  <option value="0">Tất cả các năm</option>
 		</select>
 		
 		<label>Cấp: </label>
 		<select name="cap">
-			<option value="Cấp trường">Cấp trường</option>
-			<option value="Cấp đại học Đà Nẵng">Cấp đại học Đà Nẵng</option>
-			<option value="Cấp bộ">Cấp bộ</option>
-			<option value="Cấp nhà nước">Cấp nhà nước</option>
-			<option value="" selected="selected">Tất cả các cấp</option>
+			<%
+				for(Cap eachCap : listCap){
+			%>
+				<option value="<%=eachCap.getIdCap()%>"><%= eachCap.getTenCap()%></option>
+			<%} %>
+			<option value="" selected="selected">Tất cả</option>
 		</select>
 		
 		
@@ -87,6 +84,7 @@ $(document).ready(function() {
 			</th>
 		</tr>
 		<%
+		if(listDeTai.size()!=0){
 		for(DeTai eachDeTai:listDeTai){
 			int idDeTai = eachDeTai.getIdDeTai();
 			String tenDeTai = eachDeTai.getTenDeTai();

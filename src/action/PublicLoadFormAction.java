@@ -33,8 +33,7 @@ public class PublicLoadFormAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doPost(request, response);
 	}
 
@@ -42,8 +41,7 @@ public class PublicLoadFormAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -57,7 +55,11 @@ public class PublicLoadFormAction extends HttpServlet {
 		}
 		LinhVucBO linhVucBO = new LinhVucBO();
 		ArrayList<Linhvuc> ListLinhVuc = linhVucBO.getLinhVuc();
+		
+		int idCap = (int) request.getAttribute("idCap");
+		
 		request.setAttribute("ListLinhVuc", ListLinhVuc);
+		request.setAttribute("idCap", idCap);
 //		int idCap = Integer.parseInt(request.getParameter("cap"));
 		RequestDispatcher rd = request.getRequestDispatcher("dangky.jsp");
 		rd.forward(request, response);

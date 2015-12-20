@@ -17,7 +17,7 @@
 <title>Hệ thống đăng ký đề tài nghiên cứu khoa học</title>
 </head>
 <body>
-
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#selecctall').click(function(event) {  //on toggle click 
@@ -70,6 +70,7 @@
 			</div>
 			<div class="">
 						<ul class="nav nav-pills">
+							<li role="presentation"><a href="quan-tri-truong" class="btn btn-info" role="button">Danh sách đề tài</a></li>
 							<li role="presentation"><a href="khoa-dang-ky" class="btn btn-info" role="button">Hiệu chỉnh khóa đăng ký</a></li>
 							<li role="presentation"><a href="hieu-chinh-user" class="btn btn-info" role="button">Hiệu chỉnh thành viên</a></li>
 							<li role="presentation"><a href="hieu-chinh-thong-bao" class="btn btn-info" role="button">Hiệu chỉnh thông báo</a></li>
@@ -80,10 +81,10 @@
 										<span class="caret"></span>
 									</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-									<li><a href="">Danh sách các cấp đề tài</a></li>
-									<li><a href="">Danh sách các lĩnh vực</a></li>
-									<li><a href="">Danh sách các khoa</a></li>
-									<li><a href="">Danh sách các chuyên ngành</a></li>
+									<li><a href="">Cấp đề tài</a></li>
+									<li><a href="">Lĩnh vực</a></li>
+									<li><a href="">Khoa</a></li>
+									<li><a href="">Chuyên ngành</a></li>
 								</ul>
 								</div>
 							</li>

@@ -7,17 +7,16 @@ import dao.CapDAO;
 
 public class CapBO {
 	CapDAO capdao = new CapDAO();
-	
-	public boolean suaDotDK(Cap cap) {
-		return capdao.suaDotDK(cap);
+	public ArrayList<Cap> getListCap(){
+		return capdao.getListCap();
 	}
-	public ArrayList<Cap> getCapDeTai(){
-		return capdao.getCapDeTai();
+	public boolean xoaCap(int idCap) {
+		return capdao.xoaCap(idCap);
 	}
-	public boolean taoDotDK(Cap cap) {
-		return capdao.taoDotDK(cap);
+	public boolean themCap(Cap cap) {
+		return capdao.themCap(cap);
 	}
-	public Cap getCapDeTai(int id){
-		return capdao.getCapDeTai(id);
+	public boolean suaCap(Cap cap) {
+		return capdao.suaCap(cap);
 	}
 }
