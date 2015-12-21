@@ -22,7 +22,7 @@
 	</button>
 	<div class="hieuchinh">
 	<h4>Danh sách các cấp đề tài</h4>
-	<form action="<%=request.getContextPath()%>/admin/setting?load=xoa" method="post">
+	<form action="<%=request.getContextPath()%>/admin/setting?chose=capdetai&load=xoa" method="post">
 		<table class="table table-hover">
 		<tr>
 			<th>STT</th>
@@ -43,7 +43,7 @@
 			<td><%= ++stt %></td>
 			<td><%= eachCap.getTenCap() %></td>
 			<td>
-				<a href="<%=request.getContextPath()%>/admin/setting?load=sua&idSua=<%=eachCap.getIdCap()%>&tenSua=<%=eachCap.getTenCap()%>">Sửa</a>
+				<a href="<%=request.getContextPath()%>/admin/setting?chose=capdetai&load=sua&idSua=<%=eachCap.getIdCap()%>&tenSua=<%=eachCap.getTenCap()%>">Sửa</a>
 			</td>
 			<td>
 				<input type="checkbox" class="checkbox1" name="xoathongbao" value="<%=eachCap.getIdCap()%>" />
@@ -69,7 +69,7 @@
 	</script>
 	<div class="themCap" hidden>
 		<h4>Thêm cấp đề tài</h4>
-		<form action="<%=request.getContextPath()%>/admin/setting?load=them" method="post">
+		<form action="<%=request.getContextPath()%>/admin/setting?chose=capdetai&load=them" method="post">
 			<label>Tên cấp đề tài:</label>
 			<input type="text" name="tenCapThem" required />
 			<input type="submit" name="submit" value="Thêm cấp"/>

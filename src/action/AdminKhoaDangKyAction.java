@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -135,18 +133,17 @@ public class AdminKhoaDangKyAction extends HttpServlet {
 										dir.mkdirs();
 									}
 									//out.println(uploadDir);
-									// tĂ¡ÂºÂ¡o Ă„â€˜Ă†Â°Ă¡Â»ï¿½ng dĂ¡ÂºÂ«n thĂ¡Â»Â±c Ă„â€˜Ă¡ÂºÂ¿n file trÄ‚Âªn Ă„â€˜Ă„Â©a.
+									
 									String RealPathFile = uploadDir + File.separator + dinhKemFile;
 									linkDownload = RealPathFile;
 									System.out.println("linkdownlaod-tao-dot-dk:"+linkDownload);
-									// upload file lÄ‚Âªn Ă¡Â»â€¢ Ă„â€˜Ă„Â©a
+									
 									File file = new File(RealPathFile);
 									fileItem.write(file);
 								} else {
 									dinhKemFile = "";
 								}
 								
-								//xÄ‚Â³a file
 							}
 						}
 					} catch (FileUploadException e) {
@@ -164,30 +161,18 @@ public class AdminKhoaDangKyAction extends HttpServlet {
 			        //parse ngay thang sang dinh dang va chuyen thanh string.
 			        ngayDangTin = dinhDangThoiGian.format(thoiGian.getTime());
 			        //chuyen String sang Date
-			       
+			        
 					timeOpen = timeOpen1 + " " + timeOpen0;
 					timeClose = timeClose1 + " " + timeClose0;
-					
-					
+					String arrayDate[] = timeOpen.split("-");
+					luotDangKy.setNam(Integer.parseInt(arrayDate[0]));
 					luotDangKy.setIdCap(idCap);
 					luotDangKy.setTimeOpen(timeOpen);
 					luotDangKy.setTimeClose(timeClose);
-					
+			        noiDungThongBao += "Thời gian đăng ký bắt đầu lúc: "+timeOpen +" đến: "+timeClose;
 			        
-			        //them thong tin vao doi tuong ThongBao roi update vao DB
 			        ThongBao thongBao = new ThongBao();
 			        thongBao.setTenThongBao(tenThongBao);
-			        
-			        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			        LocalDate dateOpen = LocalDate.parse(timeOpen1, f);
-			        
-			        luotDangKy.setNam(dateOpen.getYear());
-			        
-			        LocalDate dateClose = LocalDate.parse(timeClose1, f);
-			        timeOpen1 = String.valueOf(dateOpen.getDayOfMonth()) + "/" + String.valueOf(dateOpen.getMonthValue()) +"/" +String.valueOf(dateOpen.getYear()); 
-			        timeClose1 = String.valueOf(dateClose.getDayOfMonth()) + "/" + String.valueOf(dateClose.getMonthValue()) +"/" +String.valueOf(dateClose.getYear());
-			        noiDungThongBao += " Thời gian đăng ký bắt đầu lúc: "+timeOpen0 +" "+ timeOpen1+" đến "+timeClose0+" "+ timeOpen1;
-			        
 			        thongBao.setNoiDung(noiDungThongBao);
 			        thongBao.setNgayDang(ngayDangTin);
 			        thongBao.setLinkDownload(linkDownload);

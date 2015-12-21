@@ -1,3 +1,4 @@
+<%@page import="bean.Linhvuc"%>
 <%@page import="bean.Cap"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,16 +19,16 @@
 		}
 	%>
 	<button type="button" class="btn btn-default btn-sm themButton" id="them">
-				<span class="glyphicon glyphicon-plus" >Thêm cấp đề tài</span>
+				<span class="glyphicon glyphicon-plus" >Thêm lĩnh vực</span>
 	</button>
 	<div class="hieuchinh">
-	<h4>Danh sách các cấp đề tài</h4>
-	<form action="<%=request.getContextPath()%>/admin/setting?load=xoa" method="post">
+	<h4>Danh sách các lĩnh vực nghiên cứu</h4>
+	<form action="<%=request.getContextPath()%>/admin/setting?chose=linhvuc&load=xoa" method="post">
 		<table class="table table-hover">
 		<tr>
 			<th>STT</th>
-			<th>Tên cấp</th>
-			<th>Sửa tên cấp</th>
+			<th>Tên lĩnh vực</th>
+			<th>Sửa tên lĩnh vực</th>
 			<th>
 				<input type="submit" name="submit" value="Xóa"/>
 				<br/>
@@ -35,18 +36,18 @@
 			</th>
 		</tr>
 		<%
-			ArrayList<Cap> listCap = (ArrayList<Cap>) request.getAttribute("listCap");
+			ArrayList<Linhvuc> listLinhVuc = (ArrayList<Linhvuc>) request.getAttribute("listLinhVuc");
 			int stt=0;
-			for(Cap eachCap : listCap){
+			for(Linhvuc eachLinhVuc : listLinhVuc){
 		%>
 		<tr>
 			<td><%= ++stt %></td>
-			<td><%= eachCap.getTenCap() %></td>
+			<td><%= eachLinhVuc.getTenLinhVuc() %></td>
 			<td>
-				<a href="<%=request.getContextPath()%>/admin/setting?load=sua&idSua=<%=eachCap.getIdCap()%>&tenSua=<%=eachCap.getTenCap()%>">Sửa</a>
+				<a href="<%=request.getContextPath()%>/admin/setting?chose=linhvuc&load=sua&idSua=<%=eachLinhVuc.getIdLinhvuc()%>&tenSua=<%=eachLinhVuc.getTenLinhVuc()%>">Sửa</a>
 			</td>
 			<td>
-				<input type="checkbox" class="checkbox1" name="xoathongbao" value="<%=eachCap.getIdCap()%>" />
+				<input type="checkbox" class="checkbox1" name="xoathongbao" value="<%=eachLinhVuc.getIdLinhvuc()%>" />
 			</td>
 		</tr>
 		<%} %>		
@@ -68,11 +69,11 @@
 	});
 	</script>
 	<div class="themCap" hidden>
-		<h4>Thêm cấp đề tài</h4>
-		<form action="<%=request.getContextPath()%>/admin/setting?load=them" method="post">
-			<label>Tên cấp đề tài:</label>
+		<h4>Thêm lĩnh vực nghiên cứu</h4>
+		<form action="<%=request.getContextPath()%>/admin/setting?chose=linhvuc&load=them" method="post">
+			<label>Tên lĩnh vực:</label>
 			<input type="text" name="tenCapThem" required />
-			<input type="submit" name="submit" value="Thêm cấp"/>
+			<input type="submit" name="submit" value="Thêm lĩnh vực"/>
 		</form>
 	</div>
 </body>

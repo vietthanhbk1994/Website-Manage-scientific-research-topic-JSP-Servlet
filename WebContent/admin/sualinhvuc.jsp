@@ -1,3 +1,4 @@
+<%@page import="bean.Linhvuc"%>
 <%@page import="bean.Cap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,13 +11,13 @@
 <body>
 <%@include file="../templates/admin/inc/headerTruong.jsp"%>
 <%
-	Cap cap = (Cap) request.getAttribute("cap");
+	Linhvuc linhVuc = (Linhvuc) request.getAttribute("linhVuc");
 %>
 	<div class="suaCap">
-		<form action="<%=request.getContextPath()%>/admin/setting?chose=capdetai&load=sua&act=dasua&idSua=<%=cap.getIdCap() %>" method="post">
-			<label>Tên cấp đề tài:</label>
-			<input type="text" name="tenSua" value="<%=cap.getTenCap() %>" required />
-			<input type="submit" name="submit" value="Chỉnh sửa cấp"/>
+		<form action="<%=request.getContextPath()%>/admin/setting?chose=linhvuc&load=sua&act=dasua&idSua=<%=linhVuc.getIdLinhvuc() %>" method="post">
+			<label>Tên lĩnh vực:</label>
+			<input type="text" name="tenSua" value="<%=linhVuc.getTenLinhVuc() %>" required />
+			<input type="submit" name="submit" value="Chỉnh sửa lĩnh vực"/>
 		</form>
 	</div>
 </body>

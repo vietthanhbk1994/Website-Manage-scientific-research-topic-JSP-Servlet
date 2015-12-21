@@ -81,10 +81,10 @@
 										<span class="caret"></span>
 									</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-									<li><a href="setting">Cấp đề tài</a></li>
-									<li><a href="setting">Lĩnh vực</a></li>
-									<li><a href="setting">Khoa</a></li>
-									<li><a href="setting">Chuyên ngành</a></li>
+									<li><a href="setting?chose=capdetai">Cấp đề tài</a></li>
+									<li><a href="setting?chose=linhvuc">Lĩnh vực</a></li>
+									<li><a href="setting?chose=khoa">Khoa</a></li>
+									<li><a href="setting?chose=chuyennganh">Chuyên ngành</a></li>
 								</ul>
 								</div>
 							</li>
