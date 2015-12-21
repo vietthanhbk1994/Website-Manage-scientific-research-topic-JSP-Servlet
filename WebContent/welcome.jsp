@@ -22,22 +22,22 @@ $(document).ready(function() {
 <div class="thongbao">
 <form name = "frm-del" action = "delete">
 <h3>ĐỀ TÀI THAM GIA</h3>
-<table border = "1">
-<%
-Users userslogin = (Users)session.getAttribute("users");
-String msg = request.getParameter("msg");
-if(msg!=null){
-	out.print("<h3 style = 'color:red;'>"+msg+"</h3>");
-}
-ArrayList<DeTai> ListDeTai = (ArrayList<DeTai>) request
-.getAttribute("ListDeTai");
-ArrayList<DeTai> listDeTai2 = (ArrayList<DeTai>) request
-.getAttribute("listDeTai2");
-if(ListDeTai!=null && ListDeTai.size()==0){
-	out.println("<h4 style = 'color:red'>Chưa có đề tài nào</h4");
-}else{
-%>
+<table  class="table table-hover">
+	<%
+		Users userslogin = (Users)session.getAttribute("users");
+		String msg = request.getParameter("msg");
+		if(msg!=null){
+			out.print("<h3 style = 'color:red;'>"+msg+"</h3>");
+		}
+		ArrayList<DeTai> ListDeTai = (ArrayList<DeTai>) request.getAttribute("ListDeTai");
+		ArrayList<DeTai> listDeTai2 = (ArrayList<DeTai>) request.getAttribute("listDeTai2");
+		int stt=0;
+		if(ListDeTai!=null && ListDeTai.size()==0){
+			out.println("<h4 style = 'color:red'>Chưa có đề tài nào</h4");
+		}else{
+	%>
 <tr>
+	<th>STT</th>
 	<th>Tên Đề Tài</th>
 	<th>Cấp đề tài</th>
 	<th>Xác nhận đăng ký</th>
@@ -52,6 +52,7 @@ if(ListDeTai!=null && ListDeTai.size()==0){
 	for(DeTai eachDeTai:ListDeTai){
 %>
 <tr>
+	<td><%=++stt %></td>
 	<td><a href = "chi-tiet?de-tai=<%=eachDeTai.getIdDeTai() %>"><%=eachDeTai.getTenDeTai() %></a></td>
 	<td><%=eachDeTai.getTenCap() %></td>
 	<td>
@@ -69,11 +70,11 @@ if(ListDeTai!=null && ListDeTai.size()==0){
 	</td>
 	<td>
 	<%
-	if(eachDeTai.getKiemduyet()==3){
-		out.println("Đã duyệt");
+	if(eachDeTai.getKiemduyet()==2){
+		out.println("Đã thông qua");
 	}else{
-	if(eachDeTai.getKiemduyet()==-1){
-		out.println("Không duyệt");
+	if(eachDeTai.getKiemduyet()==3){
+		out.println("Không thông qua");
 	}else{
 		out.println("Chưa duyệt");
 	}
@@ -90,7 +91,7 @@ if(ListDeTai!=null && ListDeTai.size()==0){
 <%} }%>
 
 </table><br />
-<table border = "1">
+<table class="table table-hover">
 <h3>ĐỀ TÀI ĐỀ XUẤT NHƯNG KHÔNG THAM GIA</h3>
 <%
 if(listDeTai2!=null && listDeTai2.size()==0){

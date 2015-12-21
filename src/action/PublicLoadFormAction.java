@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Cap;
 import bean.Linhvuc;
 import bean.Users;
+import bo.CapBO;
 import bo.LinhVucBO;
 
 /**
@@ -58,6 +60,9 @@ public class PublicLoadFormAction extends HttpServlet {
 		
 		int idCap = (int) request.getAttribute("idCap");
 		
+		CapBO capbo = new CapBO();
+		ArrayList<Cap> ListCap = capbo.getListCap();
+		request.setAttribute("ListCap", ListCap);
 		request.setAttribute("ListLinhVuc", ListLinhVuc);
 		request.setAttribute("idCap", idCap);
 //		int idCap = Integer.parseInt(request.getParameter("cap"));

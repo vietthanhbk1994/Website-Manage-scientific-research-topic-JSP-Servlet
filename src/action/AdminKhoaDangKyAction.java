@@ -67,7 +67,7 @@ public class AdminKhoaDangKyAction extends HttpServlet {
 		if (userLogin == null || userLogin.getRole() !=-1) {
 			session.invalidate();
 			response.sendRedirect(request.getContextPath() + "/login");
-			
+			return;
 		}
 		else{
 			PrintWriter write = response.getWriter();
@@ -197,7 +197,7 @@ public class AdminKhoaDangKyAction extends HttpServlet {
 			        ThongBaoBO thongBaoBO = new ThongBaoBO();
 					//tao dot dang ky
 					if(request.getParameter("act").equals("datao")&&request.getParameter("load").equals("tao")){
-						if(thongBaoBO.themThongBao(thongBao) && luotDangKyBO.suaLuotDK(luotDangKy)){
+						if(thongBaoBO.themThongBao(thongBao) && luotDangKyBO.themLuotDK(luotDangKy)){
 							listLuotDangKy = luotDangKyBO.getListLuotDangKy();
 							request.setAttribute("listLuotDangKy", listLuotDangKy);
 							RequestDispatcher rd = request.getRequestDispatcher("/admin/khoadangky.jsp");
@@ -205,7 +205,7 @@ public class AdminKhoaDangKyAction extends HttpServlet {
 				        }
 				        else{
 				        	PrintWriter writer = response.getWriter();
-				    		write.println("QuĂ¡ trĂ¬nh thĂªm dá»¯ liá»‡u vĂ o Database bá»‹ lá»—i. Vui lĂ²ng thá»­ láº¡i");
+				    		write.println("Ko them vao duoc database. Loi");
 				        }
 						return;
 					}
@@ -221,7 +221,7 @@ public class AdminKhoaDangKyAction extends HttpServlet {
 				        }
 				        else{
 				        	PrintWriter writer = response.getWriter();
-				    		write.println("QuĂ¡ trĂ¬nh thĂªm dá»¯ liá»‡u vĂ o Database bá»‹ lá»—i. Vui lĂ²ng thá»­ láº¡i");
+				    		write.println("Ko Sua duoc database. Loi");
 				        }
 						return;
 					}
@@ -266,6 +266,7 @@ public class AdminKhoaDangKyAction extends HttpServlet {
 					}
 					else{
 						write.println("Không thể xóa. Lỗi");
+						return;
 					}
 				}
 				

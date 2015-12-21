@@ -61,9 +61,7 @@
 						<li role="presentation" class="">
 							<a  href="<%=request.getContextPath()%>/welcome" class="btn btn-info" role="button">Tình trạng đăng ký</a>
 						</li>
-						<li role="presentation" class="">
-							<a  href="<%=request.getContextPath()%>/thong-tin-ca-nhan" class="btn btn-info" role="button">Thông tin cá nhân</a>
-						</li>
+						
 						<li>
 							<div class="dropdown">
 								<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

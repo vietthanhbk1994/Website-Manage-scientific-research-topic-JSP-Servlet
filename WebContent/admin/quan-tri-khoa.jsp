@@ -21,8 +21,8 @@ $(document).ready(function() {
 });
 </script>
 <div class="list-detai">
-	<h3>Danh sách đề tài khoa công nghệ thông tin cấp trường</h3>
 	<% 
+		String tenKhoa = (String) request.getAttribute("tenKhoa");
 		ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 		listDeTai = (ArrayList<DeTai>) request.getAttribute("listDeTai");
 		
@@ -35,12 +35,23 @@ $(document).ready(function() {
 		int tt=1;
 		Users usersLogin = (Users)session.getAttribute("users");
 		
+		DeTai deTaiSearch = (DeTai) request.getAttribute("deTaiSearch");
+		String sothe ="", fullname = "";
+		int namSearch=0, idKhoa=0, idCap=0;
+		if(deTaiSearch!=null){
+			sothe = deTaiSearch.getUsers().getSoThe();
+			fullname = deTaiSearch.getUsers().getFullname();
+			namSearch = Integer.parseInt(deTaiSearch.getNgaydangky());
+			idCap = deTaiSearch.getIdCap();
+		}
+		
 	%>
-	<h3>Danh sách đề tài khoa <%= usersLogin.getFullname()%></h3>
+	<h3>Danh sách đề tài khoa <%= tenKhoa %></h3>
 	<form action="tim-kiem-khoa" method="post">
 		
-		<label>Số thẻ:</label> <input type="text" name="sothe" value=""/>
-		<label>Tên đầy đủ:</label> <input type="text" name="fullname" value=""/>
+		<label>Số thẻ:</label> 
+		<input type="text" name="sothe" value="<%if(sothe!="") out.print(sothe); %>" style="width:140px;"/>
+		<label>Tên đầy đủ:</label> <input type="text" name="fullname" value="<%if(fullname!="") out.print(fullname); %>"/>
 		<label>Năm:</label>
 		
 		<select name="nam">
@@ -48,9 +59,10 @@ $(document).ready(function() {
 				for(int i=0; i <nam.length;i++){
 					if(nam[i]==0) break;
 			%>
-		  			<option value="<%=nam[i] %>"><%=nam[i] %></option>
+		  			<option value="<%=nam[i] %>" <% if(namSearch!=0 && namSearch == nam[i]) out.print("selected"); %>><%=nam[i] %></option>
 			<%}%>
-		  <option value="0">Tất cả các năm</option>
+		  
+		  <option value="0" <% if(namSearch==0) out.print("selected"); %>>Tất cả</option>
 		</select>
 		
 		<label>Cấp: </label>
@@ -58,17 +70,16 @@ $(document).ready(function() {
 			<%
 				for(Cap eachCap : listCap){
 			%>
-				<option value="<%=eachCap.getIdCap()%>"><%= eachCap.getTenCap()%></option>
+				<option value="<%=eachCap.getIdCap()%>" <% if(idCap!=0 && idCap == eachCap.getIdCap()) out.print("selected"); %>><%= eachCap.getTenCap()%></option>
 			<%} %>
-			<option value="" selected="selected">Tất cả</option>
+			<option value="0" <% if(idCap==0) out.print("selected"); %>>Tất cả</option>
 		</select>
-		
 		
 		<input type="submit" value="Tìm kiếm" name="timkiem"/>
 		</form>
 		
 		<form action="quan-tri-khoa" method="post">
-		<table>
+		<table class="table table-hover">
 			<tr>
 				<th>TT</th>
 				<th>Tên đề xuất chương trình</th>

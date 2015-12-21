@@ -141,10 +141,11 @@ public class UserDAO {
 		String dienThoai = user.getDienthoai();
 		String email = user.getEmail();
 		int idChuyenNganh = user.getIdChuyenNganh();
+		int check =0;
 		
 		String query = "INSERT INTO users(fullname,soThe,password,role,idChuyenNganh,address,dienthoai,email) VALUES (?,?,?,?,?,?,?,?)";
 		
-		int check =0;
+		
 		try {
 			PreparedStatement ps = db.connectDB().prepareStatement(query);
 			ps.setString(1, fullname);

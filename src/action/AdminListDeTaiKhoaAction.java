@@ -96,6 +96,8 @@ public class AdminListDeTaiKhoaAction extends HttpServlet {
 				}
 			}
 			listDeTai = detaiBO.getListDeTaiKhoa(idKhoa);
+			String tenKhoa = userLogin.getTenKhoa();
+			request.setAttribute("tenKhoa", tenKhoa);
 			request.setAttribute("listDeTai", listDeTai);
 			request.setAttribute("nam", nam);
 			request.setAttribute("listCap", listCap);

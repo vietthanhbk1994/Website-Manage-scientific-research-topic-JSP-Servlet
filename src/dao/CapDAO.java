@@ -9,12 +9,31 @@ import bean.Cap;
 public class CapDAO {
 	DataBase db = new DataBase();
 	
-	public boolean themCap(Cap cap) {
+	public boolean isExistCap(String tenCap) {
+		int check = 0;
+		String sql = "SELECT * FROM cap WHERE tenCap = '"
+				+ tenCap + "'";
+		try {
+			Statement stm = db.connectDB().createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			while(rs.next()){
+				check = rs.getRow();
+			}
+			stm.close();
+			db.connectDB().close();
+			//System.out.println("so hang la:"+check);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return (check != 0);
+	}
+	
+	public boolean themCap(String tenCap) {
 			String query = "INSERT INTO capdetai(tenCap) VALUES (?)";
 			int check = 0;
 			try {
 				PreparedStatement pstm = db.connectDB().prepareStatement(query);
-				pstm.setString(1, cap.getTenCap());
+				pstm.setString(1, tenCap);
 				check = pstm.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -37,18 +56,30 @@ public class CapDAO {
 			
 	}
 	
-	public boolean xoaCap(int idCap) {
-		String query = "DELETE FROM capdetai WHERE idCap = ?";
-		int check = 0;
+	public boolean xoaCap(String[] listXoaCap) {
+		String listCap="";
+		if(listXoaCap.length==1){
+			listCap += listXoaCap[listXoaCap.length-1];
+		}
+		else{
+			for(int i=0;i<listXoaCap.length - 1;i++){
+				listCap += listXoaCap[i] +",";
+			}
+			listCap += listXoaCap[listXoaCap.length-1];
+		}
+		String query = "DELETE FROM capdetai WHERE idCap IN ("+listCap +")";
+		int check =0;
 		try {
-			PreparedStatement pstm = db.connectDB().prepareStatement(query);
-			pstm.setInt(1, idCap);
-			check = pstm.executeUpdate();
+			Statement st = db.connectDB().createStatement();
+			check = st.executeUpdate(query);
+			st.close();
+			db.connectDB().close();
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return (check !=0);
-			
+		if(check == 0) return false;
+		return true;
 	}
 	
 	

@@ -87,12 +87,12 @@ public class DeTaiDAO {
 		}
 		return listDeTai;
 	}
-
-	public ArrayList<DeTai> timKiemDeTaiKhoa(int idKhoa, String soThe, String fullname, String cap, int nam) {
+	
+	public ArrayList<DeTai> timKiemDeTaiKhoa(int idKhoa, String soThe, String fullname, int idCap, int nam) {
 
 		ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 		String dk0 = "", dk1 = "", dk2 = "", dk3 = "", dk4 = "";
-		String sql = "SELECT * FROM danhsachdetai,users,capdetai,chuyennganh WHERE (users.idUsers=danhsachdetai.idUsers) AND (danhsachdetai.idCap = capdetai.idCap) AND (users.idChuyenNganh = chuyennganh.idChuyenNganh) AND danhsachdetai.xacnhandangky=1";
+		String sql = "SELECT * FROM danhsachdetai,users,capdetai,chuyennganh WHERE (users.idUsers=danhsachdetai.idUsers) AND (users.idChuyenNganh = chuyennganh.idChuyenNganh) AND (danhsachdetai.idCap = capdetai.idCap) AND (danhsachdetai.xacnhandangky = 1)";
 
 		if (idKhoa != 0) {
 			dk0 = " AND chuyennganh.idKhoa =" + idKhoa;
@@ -106,10 +106,10 @@ public class DeTaiDAO {
 		}
 
 		if (nam != 0) {
-			dk3 = " AND capdetai.nam = " + nam;
+			dk3 = " AND danhsachdetai.ngaydangky LIKE '%" + nam +"%'";
 		}
-		if (cap != "") {
-			dk4 = " AND capdetai.tenCap = " + cap;
+		if (idCap != 0) {
+			dk4 = " AND capdetai.idCap = " + idCap;
 		}
 
 		sql += dk0 + dk1 + dk2 + dk3 + dk4;
@@ -160,7 +160,7 @@ public class DeTaiDAO {
 		}
 		return listDeTai;
 	}
-
+	
 	public ArrayList<DeTai> getListDeTaiKhoa(int idKhoa) {
 		ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 

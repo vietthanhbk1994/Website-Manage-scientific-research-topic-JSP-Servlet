@@ -17,7 +17,7 @@
 <title>Hệ thống đăng ký đề tài nghiên cứu khoa học</title>
 </head>
 <body>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#selecctall').click(function(event) {  //on toggle click 
@@ -35,7 +35,7 @@
 </script>
 	<div class="wrapper">
 		<div class="container">
-			<div class="header">
+			<div class="header notprint" >
 				<div class="banner">
 					<h4>HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC - ĐH BÁCH KHOA ĐÀ NẴNG</h4>
 					<div class="login right">
@@ -68,7 +68,7 @@
 					<div class="clear"></div>
 				</div>
 			</div>
-			<div class="">
+			<div class="notprint">
 						<ul class="nav nav-pills">
 							<li role="presentation"><a href="quan-tri-truong" class="btn btn-info" role="button">Danh sách đề tài</a></li>
 							<li role="presentation"><a href="khoa-dang-ky" class="btn btn-info" role="button">Hiệu chỉnh khóa đăng ký</a></li>
@@ -81,10 +81,10 @@
 										<span class="caret"></span>
 									</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-									<li><a href="">Cấp đề tài</a></li>
-									<li><a href="">Lĩnh vực</a></li>
-									<li><a href="">Khoa</a></li>
-									<li><a href="">Chuyên ngành</a></li>
+									<li><a href="setting">Cấp đề tài</a></li>
+									<li><a href="setting">Lĩnh vực</a></li>
+									<li><a href="setting">Khoa</a></li>
+									<li><a href="setting">Chuyên ngành</a></li>
 								</ul>
 								</div>
 							</li>

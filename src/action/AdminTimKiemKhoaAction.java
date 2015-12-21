@@ -21,6 +21,7 @@ import bean.ThongBao;
 import bean.Users;
 import bo.CapBO;
 import bo.DeTaiBO;
+import bo.LuotDangKyBO;
 import bo.ThongBaoBO;
 import bo.UserBO;
 
@@ -62,10 +63,11 @@ public class AdminTimKiemKhoaAction extends HttpServlet {
 			
 		}
 		else{
-//			PrintWriter pr = response.getWriter();
-//			pr.println("da vao day");
-			
 			int idKhoa = userLogin.getIdKhoa();
+			int idCap = 0;
+			idCap = Integer.parseInt(request.getParameter("cap"));
+			int nam = 0;
+			nam = Integer.parseInt(request.getParameter("nam"));
 			
 			String soThe =""; 
 			soThe = request.getParameter("sothe");
@@ -73,45 +75,41 @@ public class AdminTimKiemKhoaAction extends HttpServlet {
 			String fullname = ""; 
 			fullname = request.getParameter("fullname");
 			
-			int nam =0;
-			nam = Integer.parseInt(request.getParameter("nam"));
+			String namSearch = String.valueOf(nam);
 			
-			String cap ="";
-			cap = request.getParameter("cap");
+			DeTai deTaiSearch = new DeTai();
+			Users userSearch = new Users();
+			userSearch.setSoThe(soThe);
+			userSearch.setFullname(fullname);
+			
+			deTaiSearch.setUsers(userSearch);
+			deTaiSearch.setIdCap(idCap);
+			deTaiSearch.setIdKhoa(idKhoa);
+			deTaiSearch.setNgaydangky(namSearch);
 			
 			DeTaiBO detaiBO = new DeTaiBO();
 			ArrayList<DeTai> listDeTai = new ArrayList<DeTai>();
 			
-			listDeTai = detaiBO.timKiemDeTaiKhoa(idKhoa, soThe, fullname, cap, nam);
+			listDeTai = detaiBO.timKiemDeTaiKhoa(idKhoa, soThe, fullname, idCap, nam);
 			
 			CapBO capbo = new CapBO();
 			ArrayList<Cap> listCap = new ArrayList<Cap>();
+			listCap = capbo.getListCap();
 			//listCap = capbo.getCapDeTai();
 			
-//--			UserBO userBO = new UserBO();
-//--			ArrayList<Users> listKhoa = userBO.getListKhoa();
-//--			
-//--			request.setAttribute("listKhoa", listKhoa);
+			UserBO userBO = new UserBO();
 			
-			
+			LuotDangKyBO luotDangKyBO = new LuotDangKyBO();
+			int [] namShow= luotDangKyBO.getNam();
+			String tenKhoa = userLogin.getTenKhoa();
+			request.setAttribute("tenKhoa", tenKhoa);
+			request.setAttribute("deTaiSearch", deTaiSearch);
+			request.setAttribute("nam", namShow);
 			request.setAttribute("listCap", listCap);
 			request.setAttribute("listDeTai", listDeTai);
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/quan-tri-khoa.jsp");
 			rd.forward(request, response);
-			
-//--			
-//--			
-//			listDeTai = detaiBO.getListDeTaiKhoa();
-//			
-//			ArrayList<Users> listUser = new ArrayList<Users>();
-//			UserBO userBO = new UserBO();
-//			listUser = userBO.getListUser();
-//			
-//			request.setAttribute("listUser", listUser);
-//			request.setAttribute("listDeTai", listDeTai);
-//			
-//			RequestDispatcher rd = request.getRequestDispatcher("/quantrikhoa.jsp");
-//			rd.forward(request, response);
+
 		}
 	}
 

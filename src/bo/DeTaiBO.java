@@ -10,11 +10,11 @@ public class DeTaiBO {
 	public boolean xacnhanKhoa(StringBuilder listxacnhan) {
 		return deTaiDAO.xacnhanKhoa(listxacnhan);
 	}
-	public ArrayList<DeTai> timKiemDeTaiKhoa(int idKhoa, String soThe, String fullname, String cap, int nam) {
-		return deTaiDAO.timKiemDeTaiKhoa(idKhoa, soThe, fullname, cap, nam);
-	}
 	public ArrayList<DeTai> timKiemDeTaiTruong(int idKhoa, String soThe, String fullname, int idCap, int nam) {
 		return deTaiDAO.timKiemDeTaiTruong(idKhoa, soThe, fullname, idCap, nam);
+	}
+	public ArrayList<DeTai> timKiemDeTaiKhoa(int idKhoa, String soThe, String fullname, int idCap, int nam) {
+		return deTaiDAO.timKiemDeTaiKhoa(idKhoa, soThe, fullname, idCap, nam);
 	}
 	public ArrayList<DeTai> getListDeTaiKhoa(int idKhoa){
 		return deTaiDAO.getListDeTaiKhoa(idKhoa);

@@ -28,19 +28,20 @@
 			<option value="<%=eachCap.getIdCap()%>"><%= eachCap.getTenCap()%></option>
 			<%} %>
 		</select>
-		
+		<br />
 		<label>Tên đợt đăng ký: </label>
 		<input type="text" name="tenThongBao" value="" class="textbig" />
-						
+		<br />				
 		<label>Nội dung chi tiết: </label>
 		<textarea name="noiDungThongBao"></textarea>
-		
+		<br />
 		<label>File đính kèm:</label>
 		<input type="file" name="files" id="file">
 		
 		<label>Thời gian bắt đầu đợt đăng kí: </label>
 		<input type="time" name="timeOpen0" value=""/>
 		<input type="date" name="timeOpen1" value=""/>
+		<br />
 		<label>Thời gian kết thúc đợt đăng kí: </label>
 		<input type="time" name="timeClose0" value=""/>
 		<input type="date" name="timeClose1" value=""/>

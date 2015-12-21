@@ -4,6 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../templates/admin/inc/headerTruong.jsp"%>
+<style>
+	@media print
+	{
+		.notprint{ display:none; }
+	} 
+</style>
 <div class="list-detai">
 	<% 
 		ArrayList<DeTai> listDeTai = (ArrayList<DeTai>) request.getAttribute("listDeTai");
@@ -30,7 +36,7 @@
 		
 	%>
 	<h3>Danh sách đề tài:</h3>
-	<form action="tim-kiem-truong" method="post">
+	<form action="tim-kiem-truong" method="post" class = "notprint">
 		
 		<label>Số thẻ:</label> 
 		<input type="text" name="sothe" value="<%if(sothe!="") out.print(sothe); %>" style="width:140px;"/>
@@ -83,9 +89,9 @@
 				<th>Thời gian,nhu cầu kinh phí</th>
 				<th>Ghi chú</th>
 			</tr>
-			<%
+		<%
 			if(listDeTai.size()!=0){
-		for(DeTai eachDeTai:listDeTai){
+			for(DeTai eachDeTai:listDeTai){
 			int idDeTai = eachDeTai.getIdDeTai();
 			String tenDeTai = eachDeTai.getTenDeTai();
 			String tinhcapthiet = eachDeTai.getTinhcapthiet();
@@ -129,8 +135,9 @@
 			</td>
 		</tr>
 			<%} %>
-			<% }else{out.println("<span style = 'color:red;'>Không có đề tài để hiển thị</span>");}%>
+			<input type = "button" onclick = "print();" value = "Print" class = "notprint" />
 		</table>
+			<% }else{out.println("<span style = 'color:red;'>Không có đề tài để hiển thị</span>");}%>
 	
 </div>
 <%@include file="../templates/admin/inc/footerTruong.jsp"%>

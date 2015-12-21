@@ -49,9 +49,11 @@
 					<div class="clear"></div>
 				</div>
 			</div>
-			<div class="main-body">
+			
 				<div class="">
 					<ul class="nav nav-pills">
-						<li role="presentation"><a href="<%=request.getContextPath()%>/khoa-danh-sach?khoa=<%=users.getIdKhoa()%>" class="btn btn-info" role="button">Danh sách đề tài Khoa</a></li>
-						<li role="presentation"><a href="<%=request.getContextPath()%>/khoa-danh-sach?khoa=<%=users.getIdKhoa()%>" class="btn btn-info" role="button">Danh sách thành viên Khoa</a></li>
+						<li role="presentation"><a href="<%=request.getContextPath()%>/quan-tri-khoa" class="btn btn-info" role="button">Danh sách đề tài Khoa</a></li>
+						<li role="presentation"><a href="<%=request.getContextPath()%>/quan-tri-khoa" class="btn btn-info" role="button">Danh sách thành viên Khoa</a></li>
 					</ul>
+				</div>
+			<div class="main-body">

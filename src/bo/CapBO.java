@@ -10,11 +10,15 @@ public class CapBO {
 	public ArrayList<Cap> getListCap(){
 		return capdao.getListCap();
 	}
-	public boolean xoaCap(int idCap) {
-		return capdao.xoaCap(idCap);
+	public boolean xoaCap(String[] listXoaCap) {
+		return capdao.xoaCap(listXoaCap);
 	}
-	public boolean themCap(Cap cap) {
-		return capdao.themCap(cap);
+	public boolean themCap(String tenCap) {
+		//neu co ton tai 1 cap giong cap do thi tra ve false
+		if(capdao.isExistCap(tenCap)){
+			return false;
+		}
+		return capdao.themCap(tenCap);
 	}
 	public boolean suaCap(Cap cap) {
 		return capdao.suaCap(cap);

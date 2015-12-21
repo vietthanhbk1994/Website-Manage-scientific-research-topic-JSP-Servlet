@@ -22,7 +22,7 @@
 	
 	<table class="table table-hover">
 		<tr>
-			<th>ID thông báo</th>
+			<th>STT</th>
 			<th>Ngày đăng</th>
 			<th>Tên thông báo</th>
 			<th>Nội dung thông báo</th>
@@ -37,7 +37,7 @@
 		</tr>
 	<%
 		ArrayList<ThongBao> listThongBao = (ArrayList<ThongBao>) request.getAttribute("listThongBao");
-	
+		int stt=0;
 		for(ThongBao eachThongBao : listThongBao){
 			int idThongBao = eachThongBao.getIdThongBao();
 			int cheDo = eachThongBao.getCheDo();
@@ -52,7 +52,7 @@
 			
 	%>
 		<tr>
-			<td><%=idThongBao %></td>
+			<td><%= ++stt %></td>
 			<td><%= ngayDang %></td>
 			<td><%= tenThongBao %></td>
 			<td><%= noiDung %></td>
