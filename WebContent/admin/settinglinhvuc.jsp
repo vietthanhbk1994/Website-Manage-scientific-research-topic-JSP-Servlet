@@ -18,7 +18,7 @@
 			out.print("<span style='color:red;'>"+msg+"</span><br />");
 		}
 	%>
-	<button type="button" class="btn btn-default btn-sm themButton" id="them">
+	<button type="button" class="btn btn-primary themButton" id="them">
 				<span class="glyphicon glyphicon-plus" >Thêm lĩnh vực</span>
 	</button>
 	<div class="hieuchinh">
@@ -30,7 +30,7 @@
 			<th>Tên lĩnh vực</th>
 			<th>Sửa tên lĩnh vực</th>
 			<th>
-				<input type="submit" name="submit" value="Xóa"/>
+				<input type="submit" name="submit" value="Xóa"  class="btn btn-danger" />
 				<br/>
 				<input type="checkbox" name="xoatatca" value="0" id="selecctall"/>Xóa tất cả
 			</th>
@@ -73,7 +73,7 @@
 		<form action="<%=request.getContextPath()%>/admin/setting?chose=linhvuc&load=them" method="post">
 			<label>Tên lĩnh vực:</label>
 			<input type="text" name="tenCapThem" required />
-			<input type="submit" name="submit" value="Thêm lĩnh vực"/>
+			<input type="submit" name="submit" value="Thêm lĩnh vực" class="btn btn-success" />
 		</form>
 	</div>
 </body>

@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Cap;
 import bean.DeTai;
 import bean.Linhvuc;
 import bean.Users;
+import bo.CapBO;
 import bo.DeTaiBO;
 import bo.LinhVucBO;
 import bo.UserBO;
@@ -64,6 +66,9 @@ public class PublicChiTietDTAction extends HttpServlet {
 		DeTaiBO deTaiBO = new DeTaiBO();
 		UserBO userBO = new UserBO();
 		LinhVucBO linhVucBO = new LinhVucBO();
+		CapBO capbo = new CapBO();
+		ArrayList<Cap> ListCap = capbo.getListCap();
+		request.setAttribute("ListCap", ListCap);
 		//lay danh sach linh vuc
 		ArrayList<Linhvuc> ListLinhVuc = linhVucBO.getLinhVuc();
 		request.setAttribute("ListLinhVuc", ListLinhVuc);

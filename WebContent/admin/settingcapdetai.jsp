@@ -17,8 +17,8 @@
 			out.print("<span style='color:red;'>"+msg+"</span><br />");
 		}
 	%>
-	<button type="button" class="btn btn-default btn-sm themButton" id="them">
-				<span class="glyphicon glyphicon-plus" >Thêm cấp đề tài</span>
+	<button type="button" class="btn btn-primary themButton" id="them">
+				<span class="glyphicon glyphicon-plus" > Thêm cấp đề tài</span>
 	</button>
 	<div class="hieuchinh">
 	<h4>Danh sách các cấp đề tài</h4>
@@ -29,7 +29,7 @@
 			<th>Tên cấp</th>
 			<th>Sửa tên cấp</th>
 			<th>
-				<input type="submit" name="submit" value="Xóa"/>
+				<input type="submit" name="submit" value="Xóa" class="btn btn-danger" />
 				<br/>
 				<input type="checkbox" name="xoatatca" value="0" id="selecctall"/>Xóa tất cả
 			</th>
@@ -72,7 +72,7 @@
 		<form action="<%=request.getContextPath()%>/admin/setting?chose=capdetai&load=them" method="post">
 			<label>Tên cấp đề tài:</label>
 			<input type="text" name="tenCapThem" required />
-			<input type="submit" name="submit" value="Thêm cấp"/>
+			<input type="submit" name="submit" value="Thêm cấp"  class="btn btn-success"/>
 		</form>
 	</div>
 </body>

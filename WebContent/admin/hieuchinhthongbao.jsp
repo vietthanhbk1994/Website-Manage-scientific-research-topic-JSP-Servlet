@@ -17,7 +17,7 @@
 			out.print("<span style='color:red;'>"+msg+"</span><br />");
 		}
 	%>
-	<a href="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao?load=them" title="" class="themthongbao">Thêm thông báo</a>
+	<a href="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao?load=them" title="" class="themthongbao btn btn-primary">Thêm thông báo</a>
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-thong-bao" method="get">
 	
 	<table class="table table-hover">
@@ -30,9 +30,9 @@
 			<th>File đính kèm</th>
 			<th>Sửa</th>
 			<th>
-				<input type="submit" name="submit" value="Xóa"/>
+				<input type="submit" name="submit" value="Xóa" class="btn btn-danger"/>
 				<br/>
-				<input type="checkbox" name="xoatatca" value="0" id="selecctall"/>Xóa tất cả
+				<input type="checkbox" name="xoatatca" value="0" id="selecctall" />Xóa tất cả
 			</th>
 		</tr>
 	<%

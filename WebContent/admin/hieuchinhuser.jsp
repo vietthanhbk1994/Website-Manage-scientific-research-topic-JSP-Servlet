@@ -12,19 +12,19 @@
 <body>
 	<%@include file="../templates/admin/inc/headerTruong.jsp"%>
 	
-	<a href="<%=request.getContextPath()%>/admin/hieu-chinh-user?load=them" title="" class="themthongbao">Thêm từng User</a>
+	<a href="<%=request.getContextPath()%>/admin/hieu-chinh-user?load=them" title="" class="themthongbao btn btn-primary" type="button">Thêm từng User</a>
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-user?load=themtufile" method="post"  enctype="multipart/form-data">
 		<label>Thêm User từ file:</label>
 		<input type="file" name="files" id="file">
 		
-		<input type="submit" value="Thêm User" />
+		<input type="submit" value="Thêm User từ file" class="btn btn-primary" />
 	</form>
 	<br />
 	<form action="<%=request.getContextPath()%>/admin/hieu-chinh-user" method="get">
 	
 	<table class="table table-hover">
 		<tr>
-			<th>ID User</th>
+			<th>STT</th>
 			<th>Tên User</th>
 			<th>Mã số thẻ</th>
 			<th>Quyền</th>
@@ -38,14 +38,14 @@
 			
 			<th>Sửa</th>
 			<th>
-				<input type="submit" name="submit" value="Xóa"/>
+				<input type="submit" name="submit" value="Xóa" class="btn btn-danger" />
 				<br/>
 				<input type="checkbox" name="xoatatca" value="0" id="selecctall"/>Xóa tất cả
 			</th>
 		</tr>
 	<%
 		ArrayList<Users> listUser = (ArrayList<Users>) request.getAttribute("listUser");
-	
+		int stt=0;
 		for(Users eachUser : listUser){
 			int idUser = eachUser.getIdUser();
 			String tenUser = eachUser.getFullname();
@@ -68,7 +68,7 @@
 			String tenKhoa = eachUser.getTenKhoa();
 	%>
 		<tr>
-			<td><%=idUser %></td>
+			<td><%=++stt %></td>
 			<td><%= tenUser %></td>
 			<td><%= soThe %></td>
 			<td><%= quyen %></td>

@@ -13,10 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Cap;
+import bean.ChuyenNganh;
+import bean.Khoa;
 import bean.Linhvuc;
 import bean.ThongBao;
 import bean.Users;
 import bo.CapBO;
+import bo.ChuyenNganhBO;
+import bo.KhoaBO;
 import bo.LinhVucBO;
 import bo.ThongBaoBO;
 
@@ -58,7 +62,8 @@ public class AdminSettingAction extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/login");
 		}
 		else{
-			
+			KhoaBO khoabo = new KhoaBO();
+			ChuyenNganhBO chuyennganhbo = new ChuyenNganhBO();
 			CapBO capbo = new CapBO();
 			LinhVucBO linhvucbo = new LinhVucBO();
 			String msg="";
@@ -103,7 +108,7 @@ public class AdminSettingAction extends HttpServlet {
 							String tenSua = request.getParameter("tenSua");
 							Cap cap = new Cap(idSua, tenSua);
 							if(capbo.suaCap(cap)){
-								request.setAttribute("cap", cap);
+								//request.setAttribute("cap", cap);
 								ArrayList<Cap> listCap = capbo.getListCap();
 								request.setAttribute("listCap", listCap);
 								RequestDispatcher rd = request.getRequestDispatcher("/admin/settingcapdetai.jsp");
@@ -174,7 +179,7 @@ public class AdminSettingAction extends HttpServlet {
 							String tenSua = request.getParameter("tenSua");
 							Linhvuc linhVuc = new Linhvuc(idSua, tenSua);
 							if(linhvucbo.suaLinhVuc(linhVuc)){
-								request.setAttribute("linhVuc", linhVuc);
+								//request.setAttribute("linhVuc", linhVuc);
 								ArrayList<Linhvuc> listLinhVuc = linhvucbo.getLinhVuc();
 								request.setAttribute("listLinhVuc", listLinhVuc);
 								RequestDispatcher rd = request.getRequestDispatcher("/admin/settinglinhvuc.jsp");
@@ -202,6 +207,163 @@ public class AdminSettingAction extends HttpServlet {
 					ArrayList<Linhvuc> listLinhVuc = linhvucbo.getLinhVuc();
 					request.setAttribute("listLinhVuc", listLinhVuc);
 					RequestDispatcher rd = request.getRequestDispatcher("/admin/settinglinhvuc.jsp");
+					rd.forward(request, response);
+			}
+			//-------------------------Them sua xoa khoa ---------------------------------------
+			if(chose.equals("khoa")){
+				if(request.getParameter("load")!=null){
+					String load = request.getParameter("load");
+					//xoa khoa
+					if(load.equals("xoa")){
+						String[] listXoaKhoa = request.getParameterValues("xoathongbao");
+						if(listXoaKhoa == null) {
+							msg="Chưa chọn mục để xóa";
+						}
+						else{
+							if(khoabo.xoaKhoa(listXoaKhoa)){
+								msg="Xóa thành công";
+							}
+							else{
+								write.println("Không thể xóa. Lỗi");
+								return;
+							}
+						}
+					}
+					//them cap
+					if(load.equals("them")){
+						String tenKhoa = request.getParameter("tenCapThem");
+						
+						if(khoabo.themKhoa(tenKhoa)){
+							msg="Thêm thành công";
+						}
+						else{
+							write.println("Không thể thêm. Lỗi");
+							return;
+						}
+						
+					}
+					//sua khoa
+					if(load.equals("sua")){
+						if(request.getParameter("act")!=null){
+							int idSua = Integer.parseInt(request.getParameter("idSua"));
+							String tenSua = request.getParameter("tenSua");
+							Khoa khoa = new Khoa();
+							khoa.setIdKhoa(idSua);
+							khoa.setTenKhoa(tenSua);
+							
+							if(khoabo.suaKhoa(khoa)){
+								ArrayList<Khoa> listKhoaChuyenNganh = khoabo.getlistKhoaChuyenNganh();
+								request.setAttribute("listKhoaChuyenNganh", listKhoaChuyenNganh);
+								RequestDispatcher rd = request.getRequestDispatcher("/admin/settingkhoa.jsp");
+								rd.forward(request, response);
+								return;
+							}
+							write.print("Lỗi. Ko sửa dc");
+							return;
+						}
+						else{
+							//load ra trang sua
+							int idSua = Integer.parseInt(request.getParameter("idSua"));
+							String tenSua = request.getParameter("tenSua");
+							Khoa khoa = new Khoa();
+							khoa.setIdKhoa(idSua);
+							khoa.setTenKhoa(tenSua);
+							
+							request.setAttribute("khoa", khoa);
+							RequestDispatcher rd = request.getRequestDispatcher("/admin/suakhoa.jsp");
+							rd.forward(request, response);
+							return;
+							
+						}					
+					}
+					
+				}
+					//load trang danh sach khoa
+					ArrayList<Khoa> listKhoaChuyenNganh = khoabo.getlistKhoaChuyenNganh();
+					request.setAttribute("listKhoaChuyenNganh", listKhoaChuyenNganh);
+					RequestDispatcher rd = request.getRequestDispatcher("/admin/settingkhoa.jsp");
+					rd.forward(request, response);
+			}
+			//-------------------------Them sua xoa chuyen nganh ---------------------------------------
+			if(chose.equals("chuyennganh")){
+				if(request.getParameter("load")!=null){
+					String load = request.getParameter("load");
+					//xoa  chuyen nganh
+					if(load.equals("xoa")){
+						String[] listXoaChuyenNganh = request.getParameterValues("xoathongbao");
+						if(listXoaChuyenNganh == null) {
+							msg="Chưa chọn mục để xóa";
+						}
+						else{
+							if(chuyennganhbo.xoaChuyenNganh(listXoaChuyenNganh)){
+								msg="Xóa thành công";
+							}
+							else{
+								write.println("Không thể xóa. Lỗi");
+								return;
+							}
+						}
+					}
+					//them  chuyen nganh
+					if(load.equals("them")){
+						String tenChuyenNganh = request.getParameter("tenCapThem");
+						int idKhoa = Integer.parseInt(request.getParameter("idKhoa"));
+						if(chuyennganhbo.themChuyenNganh(idKhoa,tenChuyenNganh)){
+							msg="Thêm thành công";
+						}
+						else{
+							write.println("Không thể thêm. Lỗi");
+							return;
+						}
+						
+					}
+					//sua  chuyen nganh
+					if(load.equals("sua")){
+						if(request.getParameter("act")!=null){
+							int idSua = Integer.parseInt(request.getParameter("idSua"));
+							String tenSua = request.getParameter("tenSua");
+							int idKhoa = Integer.parseInt(request.getParameter("idKhoa"));
+							ChuyenNganh cn = new ChuyenNganh();
+							cn.setIdKhoa(idKhoa);
+							cn.setIdChuyenNganh(idSua);
+							cn.setTenChuyenNganh(tenSua);
+							
+							if(chuyennganhbo.suaChuyenNganh(cn)){
+								ArrayList<Khoa> listKhoaChuyenNganh = khoabo.getlistKhoaChuyenNganh();
+								request.setAttribute("listKhoaChuyenNganh", listKhoaChuyenNganh);
+								RequestDispatcher rd = request.getRequestDispatcher("/admin/settingchuyennganh.jsp");
+								rd.forward(request, response);
+								return;
+							}
+							write.print("Lỗi. Ko sửa dc");
+							return;
+						}
+						else{
+							//load ra trang sua
+							int idSua = Integer.parseInt(request.getParameter("idSua"));
+							int idKhoa = Integer.parseInt(request.getParameter("idKhoa"));
+							String tenSua = request.getParameter("tenSua");
+							
+							ChuyenNganh cn = new ChuyenNganh();
+							cn.setIdKhoa(idKhoa);
+							cn.setIdChuyenNganh(idSua);
+							cn.setTenChuyenNganh(tenSua);
+							ArrayList<Khoa> listKhoaChuyenNganh = khoabo.getlistKhoaChuyenNganh();
+							
+							request.setAttribute("listKhoaChuyenNganh", listKhoaChuyenNganh);
+							request.setAttribute("chuyenNganh", cn);
+							RequestDispatcher rd = request.getRequestDispatcher("/admin/suachuyennganh.jsp");
+							rd.forward(request, response);
+							return;
+							
+						}					
+					}
+					
+				}
+					//load trang danh sach  chuyen nganh
+					ArrayList<Khoa> listKhoaChuyenNganh = khoabo.getlistKhoaChuyenNganh();
+					request.setAttribute("listKhoaChuyenNganh", listKhoaChuyenNganh);
+					RequestDispatcher rd = request.getRequestDispatcher("/admin/settingchuyennganh.jsp");
 					rd.forward(request, response);
 			}
 		}

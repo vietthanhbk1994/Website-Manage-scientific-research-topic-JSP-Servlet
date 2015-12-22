@@ -66,7 +66,7 @@ public class PublicUpdateAction extends HttpServlet {
 			submit = request.getParameter("luulai");
 		}
 		int xacnhandangky = 0;
-		if (submit.equals("Ä�Äƒng kĂ½")) {
+		if (submit.equals("Đăng ký")) {
 			xacnhandangky = 1;
 		}
 		String tendetai = new String(request.getParameter("tendetai").getBytes(
@@ -114,38 +114,45 @@ public class PublicUpdateAction extends HttpServlet {
 		//kiem tra thoi gian dang ky hop le
 		if (checkTimeBO.checkTime(DateTime, idCap)!=0) {
 			String mangtv[] = danhsachtv.split(",");
-			if (mangtv.length != slntv) {	//kiá»ƒm tra sá»‘ lÆ°á»£ng vá»›i danh sĂ¡ch
+			if (mangtv.length != slntv) {
 				RequestDispatcher rd = request
-						.getRequestDispatcher("chi-tiet?msg=Sá»‘ lÆ°á»£ng thĂ nh viĂªn khĂ´ng khá»›p vá»›i sá»‘ lÆ°á»£ng danh sĂ¡ch nháº­p vĂ o&&de-tai="+idDeTai);
+						.getRequestDispatcher("chi-tiet?msg=số lượng không phù hợp với danh sách thành viên&&de-tai="+idDeTai);
 				rd.forward(request, response);
 				return;
 			}
-			if (detai.checkExist(mangtv)) {		//kiá»ƒm tra sá»‘ tháº» nháº­p vĂ o cĂ³ cĂ³ láº·p
+			if (detai.checkExist(mangtv)) {		
 				RequestDispatcher rd = request
-						.getRequestDispatcher("chi-tiet?msg=Sá»‘ tháº» bá»‹ láº·p&&de-tai="+idDeTai);
+						.getRequestDispatcher("chi-tiet?msg=Thành viên bị trùng lặp&&de-tai="+idDeTai);
 				rd.forward(request, response);
 				return;
 			}
-			String dsID = deTaiBO.convertIDThanhVien(mangtv);	//chuyá»ƒn sá»‘ tháº» sang danh sĂ¡ch id
+			String dsID = deTaiBO.convertIDThanhVien(mangtv);	
 			detai.setDanhsachtv(dsID);
-			if (dsID == null) {					//náº¿u danh sĂ¡ch = null khĂ´ng tá»“n táº¡i sá»‘ tháº»
+			if(dsID!=null){
+				if(deTaiBO.notSameKhoa(users.getIdKhoa(),dsID)){
+					RequestDispatcher rd = request.getRequestDispatcher("chi-tiet?msg=Tồn tại thành viên không cùng khoa&&de-tai="+idDeTai);
+					rd.forward(request, response);
+					return;
+				}
+			}
+			if (dsID == null) {					
 				RequestDispatcher rd = request
-						.getRequestDispatcher("chi-tiet?msg=ThĂ nh viĂªn trong danh sĂ¡ch khĂ´ng tá»“n táº¡i&&de-tai="+idDeTai);
+						.getRequestDispatcher("chi-tiet?msg=Thành viên trong danh sách không tồn tại&&de-tai="+idDeTai);
 				rd.forward(request, response);
-				// response.sendRedirect("load-form?msg=ThĂ nh viĂªn trong danh sĂ¡ch khĂ´ng tá»“n táº¡i");
 				return;
+				
 			} else {
-				if (deTaiBO.editDeTai(detai)) {	//thá»±c hiá»‡n update
+				if (deTaiBO.editDeTai(detai)) {	
 					response.sendRedirect("welcome");
 				} else {
 					RequestDispatcher rd = request
-							.getRequestDispatcher("chi-tiet?msg=CĂ³ lá»—i trong quĂ¡ trĂ¬nh Ä‘Äƒng kĂ½&&de-tai="+idDeTai);
+							.getRequestDispatcher("chi-tiet?msg=Lỗi trong quá trình đăng ký&&de-tai="+idDeTai);
 					rd.forward(request, response);
 				}
 			}
 		}else{
 			RequestDispatcher rd = request
-					.getRequestDispatcher("chi-tiet?msg=Háº¿t háº¡n Ä‘Äƒng kĂ½&&de-tai="+idDeTai);
+					.getRequestDispatcher("chi-tiet?msg=Thời gian thực hiện không hợp lệ&&de-tai="+idDeTai);
 			rd.forward(request, response);
 			return;
 		}

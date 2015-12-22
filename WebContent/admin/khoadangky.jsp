@@ -17,17 +17,18 @@
 		ArrayList<LuotDangKy> listLuotDangKy = (ArrayList<LuotDangKy>)request.getAttribute("listLuotDangKy");
 		int stt=0;
 	%>
-	<a href="<%=request.getContextPath()%>/admin/khoa-dang-ky?load=tao" title="" class="themthongbao">Tạo đợt đăng ký</a>
+	<a href="<%=request.getContextPath()%>/admin/khoa-dang-ky?load=tao" title="" class="themthongbao btn btn-primary">Tạo đợt đăng ký</a>
 	<form action="<%=request.getContextPath()%>/admin/khoa-dang-ky" method="get">
 		<table class="table table-hover">
 			<tr>
 				<th>STT</th>
 				<th>Tên cấp đăng ký</th>
+				<th>Năm</th>
 				<th>Thời gian mở</th>
 				<th>Thời gian đóng</th>
 				<th>Hiệu chỉnh</th>
 				<th>
-					<input type="submit" name="submit" value="Xóa"/>
+					<input type="submit" name="submit" value="Xóa" class="btn btn-danger" />
 					<br/>
 					<input type="checkbox" name="xoatatca" value="0" id="selecctall"/>Xóa tất cả
 				</th>
@@ -40,8 +41,12 @@
 				<td>
 					<%= stt %>	
 				</td>
+				
 				<td>
 					<%=eachLuotDangKy.getTenCap() %>	
+				</td>
+				<td>
+					<%= eachLuotDangKy.getNam() %>
 				</td>
 				<td>
 					<%=eachLuotDangKy.getTimeOpen() %>	

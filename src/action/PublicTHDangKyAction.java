@@ -60,7 +60,7 @@ public class PublicTHDangKyAction extends HttpServlet {
 			xacnhandangky = 1;
 		}
 		String tendetai = request.getParameter("tendetai");
-		int idCap = Integer.parseInt(request.getParameter("idCap"));
+		int idCap = Integer.parseInt(request.getParameter("cap"));
 		int idLinhVuc = Integer.parseInt(request.getParameter("linhvuc"));
 		String tinhcapthiet = request.getParameter("tinhcapthiet");
 		String muctieu = request.getParameter("muctieu");
@@ -74,13 +74,15 @@ public class PublicTHDangKyAction extends HttpServlet {
 		int thoigian = Integer.parseInt(request.getParameter("thoigian"));
 		int slntv = Integer.parseInt(request.getParameter("slntv"));
 		String danhsachtv = request.getParameter("danhsachtv");
+		
+		System.out.println(danhsachtv);
+		
 		DeTai detai = new DeTai();
 		detai.setTenDeTai(tendetai);
 		detai.setIdLinhVuc(idLinhVuc);
 		detai.setTinhcapthiet(tinhcapthiet);
 		detai.setMuctieu(muctieu);
 		detai.setNoidung(ndchinh);
-		
 		detai.setKetquadukien(ketqua);
 		detai.setSanphamkhoahoc(spkhoahoc);
 		detai.setSanphamdaotao(spdaotao);
@@ -95,29 +97,31 @@ public class PublicTHDangKyAction extends HttpServlet {
 		detai.setIdCap(idCap);
 //		lưu lại dữ liệu tạm thời
 		request.setAttribute("TamThoi", detai);
-		
 		DeTaiBO deTaiBO = new DeTaiBO();
+		danhsachtv = danhsachtv.trim();
 		String mangtv[]=danhsachtv.split(",");
-		if(mangtv.length!=slntv){
-			//response.sendRedirect("load-form?msg=number of member is not suitable with list member");
-			RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=Số lượng thành viên không khớp với số lượng danh sách nhập vào");
+		if (mangtv.length != slntv) {
+			RequestDispatcher rd = request
+					.getRequestDispatcher("load-form?msg=số lượng không phù hợp với danh sách thành viên");
 			rd.forward(request, response);
 			return;
 		}
-		if(detai.checkExist(mangtv)){
-			//response.sendRedirect("load-form?msg=bi lap so the");
-			RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=Số thẻ bị lặp");
+		if (detai.checkExist(mangtv)) {		
+			RequestDispatcher rd = request
+					.getRequestDispatcher("load-form?msg=Thành viên bị trùng lặp");
 			rd.forward(request, response);
 			return;
 		}
 		String dsID = deTaiBO.convertIDThanhVien(mangtv);
-		if(deTaiBO.notSameKhoa(users.getIdKhoa(),dsID)){
-			RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=có thành viên không cùng khoa");
-			rd.forward(request, response);
-			return;
+		if(dsID!=null){
+			if(deTaiBO.notSameKhoa(users.getIdKhoa(),dsID)){
+				RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=Tồn tại thành viên không cùng khoa");
+				rd.forward(request, response);
+				return;
+			}
 		}
 		if(dsID==null){
-			RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=Thành viên trong danh sách không tồn tại");
+			RequestDispatcher rd = request.getRequestDispatcher("load-form?msg=Thành viên không tồn tại");
 			rd.forward(request, response);
 			return;
 		}else{

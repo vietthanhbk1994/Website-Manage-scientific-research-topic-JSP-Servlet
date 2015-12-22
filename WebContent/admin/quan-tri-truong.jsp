@@ -76,7 +76,7 @@
 			<option value="0" <% if(idKhoa==0) out.print("selected"); %>>Tất cả các khoa</option>
 		</select>
 		
-		<input type="submit" value="Lọc" name="timkiem"/>
+		<input type="submit" value="Lọc" name="timkiem" class="btn btn-success" />
 		</form>
 		<table class="table table-hover">
 			<tr>
