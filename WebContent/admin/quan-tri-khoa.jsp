@@ -4,12 +4,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../templates/admin/inc/headerKhoa.jsp"%>
+<<<<<<< HEAD
 +<style>
  +	@media print
  +	{
  +		.notprint{ display:none; }
  +	} 
  +</style>
+=======
+<style>
+	@media print
+	{
+		.notprint{ display:none; }
+	} 
+</style>
+>>>>>>> origin/master
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#selecctall').click(function(event) {  //on toggle click 

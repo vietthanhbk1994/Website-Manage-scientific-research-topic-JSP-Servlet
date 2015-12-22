@@ -16,8 +16,13 @@
 </head>
 <body>
 	<div class="wrapper">
+<<<<<<< HEAD
 		<div class="container" >
 			<div class="header notprint" >
+=======
+		<div class="container">
+			<div class="header notprint">
+>>>>>>> origin/master
 				<div class="banner">
 					<h4>HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC - ĐH BÁCH KHOA ĐÀ NẴNG</h4>
 					<div class="login right">

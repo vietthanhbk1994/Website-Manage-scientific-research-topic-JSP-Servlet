@@ -80,9 +80,6 @@ public class PublicXacNhanDKAction extends HttpServlet {
 			return;
 		} else {
 			response.sendRedirect("welcome?msg=Het han dang ky");
-//			RequestDispatcher rd = request
-//					.getRequestDispatcher("welcome?msg=Háº¿t háº¡n Ä‘Äƒng kĂ½");
-//			rd.forward(request, response);
 		}
 		
 	}

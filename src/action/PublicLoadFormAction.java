@@ -58,6 +58,7 @@ public class PublicLoadFormAction extends HttpServlet {
 		LinhVucBO linhVucBO = new LinhVucBO();
 		ArrayList<Linhvuc> ListLinhVuc = linhVucBO.getLinhVuc();
 		
+<<<<<<< HEAD
 		//int idCap = (int) request.getAttribute("idCap");
 		
 		CapBO capbo = new CapBO();
@@ -67,6 +68,15 @@ public class PublicLoadFormAction extends HttpServlet {
 		request.setAttribute("ListLinhVuc", ListLinhVuc);
 		//request.setAttribute("idCap", idCap);
 //		int idCap = Integer.parseInt(request.getParameter("cap"));
+=======
+//		int idCap = (int) request.getAttribute("idCap");
+		CapBO capbo = new CapBO();
+		ArrayList<Cap> ListCap = capbo.getListCap();
+		request.setAttribute("ListCap", ListCap);
+//		request.setAttribute("idCap", idCap);
+		int idCap = Integer.parseInt(request.getParameter("cap"));
+		request.setAttribute("ListLinhVuc", ListLinhVuc);
+>>>>>>> origin/master
 		RequestDispatcher rd = request.getRequestDispatcher("dangky.jsp");
 		rd.forward(request, response);
 	}
