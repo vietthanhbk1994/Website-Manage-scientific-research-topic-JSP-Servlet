@@ -67,7 +67,7 @@ public class PublicDangKyAction extends HttpServlet {
 		int idLDK = checkTimeBO.checkTime(DateTime, idCap);
 		
 		if (idLDK!=0) {
-			request.setAttribute("idCap", idCap);
+			//request.setAttribute("idCap", idCap);
 			RequestDispatcher rd = request.getRequestDispatcher("load-form");
 			rd.forward(request, response);
 		} else {

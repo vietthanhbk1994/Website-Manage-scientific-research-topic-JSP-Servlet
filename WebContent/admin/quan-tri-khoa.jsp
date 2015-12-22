@@ -4,6 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../templates/admin/inc/headerKhoa.jsp"%>
+<style>
+	@media print
+	{
+		.notprint{ display:none; }
+	} 
+</style>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#selecctall').click(function(event) {  //on toggle click 
@@ -147,7 +153,7 @@ $(document).ready(function() {
 			</td>
 		</tr>
 			<%} }else{out.println("<span style = 'color:red;'>Không có đề tài để hiển thị</span>");}%>
-			
+			<input type = "button" onclick = "print();" value = "Print" class = "notprint" />
 		</table>
 	</form>
 </div>

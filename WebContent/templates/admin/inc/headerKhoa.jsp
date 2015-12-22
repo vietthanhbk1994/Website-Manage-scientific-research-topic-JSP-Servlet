@@ -17,7 +17,7 @@
 <body>
 	<div class="wrapper">
 		<div class="container">
-			<div class="header">
+			<div class="header notprint">
 				<div class="banner">
 					<h4>HỆ THỐNG ĐĂNG KÝ ĐỀ TÀI NGHIÊN CỨU KHOA HỌC - ĐH BÁCH KHOA ĐÀ NẴNG</h4>
 					<div class="login right">
@@ -50,7 +50,7 @@
 				</div>
 			</div>
 			
-				<div class="">
+				<div class="notprint">
 					<ul class="nav nav-pills">
 						<li role="presentation"><a href="<%=request.getContextPath()%>/quan-tri-khoa" class="btn btn-info" role="button">Danh sách đề tài Khoa</a></li>
 						<li role="presentation"><a href="<%=request.getContextPath()%>/quan-tri-khoa" class="btn btn-info" role="button">Danh sách thành viên Khoa</a></li>
