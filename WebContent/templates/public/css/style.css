@@ -1,0 +1,153 @@
+.right{float:right;}
+.left{float:left;}
+.clear{clear:both;}
+.wrapper{
+    background-color: #B6B7BC;
+    padding: 20px;
+}
+div.banner{
+    background-color: #4B6C9E;
+    padding: 5px;
+}
+div.main-body{
+	padding-top: 30px;
+    background-color: white;
+}
+.banner label{
+	display: inline;
+}
+.dangnhap{
+	 display: inline;
+}
+.banner h4{
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    display: inline;
+}
+.banner .login{
+    display: inline;
+}
+.login label{
+    color: white;
+}
+.login input{
+    width: 90px;
+}
+.login .user{
+    display: inline;
+}
+.login .user label{}
+.login .user input{}
+.login .pass{
+    display: inline;
+}
+input.lg2{
+    width: 85px;
+    font-weight: bold;
+}
+.thongbao{
+	border: 1px solid black;
+	margin: 10px;
+}
+.thongbao ul{
+	list-style: none;
+    padding-left: 10px;
+}
+.thongbao h5{
+    display: inline;
+    color: #009900;
+}
+.thongbao .ngaydangtin{
+	color: red;
+	font-weight: bold;
+}
+.thongbao p{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.right{float:right;}
+.left{float:left;}
+.clear{clear:both;}
+.main-body .themthongbao label{
+    font-weight: bold;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.main-body .themthongbao .chedodang label{
+	display: inline;
+}
+.linhvuc label{
+    font-weight: normal;
+    display: inline;
+}
+.tendetai input,.textbig{
+    width: 80%;
+    margin-bottom: 10px;
+}
+.chedodang label{display:inline;}
+.linhvuc input,.chedodang input{
+    margin: 10px;
+}
+.linhvuc, .chedodang{
+    margin-left: 80px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+textarea{
+    width: 90%;
+    height: 60px;
+    margin: 15px;
+}
+.tieudedk{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.ndspvakq{
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.sanpham input{
+    width: 30px;
+    margin: 5px;
+}
+div .frm-dktruong{
+    margin: 30px;
+}
+.tuychon{
+    margin-top: 30px;
+}
+.tuychon input{
+    margin: 10px;
+}
+.ndsanpham{
+    margin-left: 20px;
+}
+.ndspkhoahoc{
+    margin-left: 20px;
+}
+.ndspkhoahoc input{
+    display: inline;
+}
+a{
+    text-decoration: none;
+}
+.menundk ul li{
+    display: inline-block;
+    border: 1px solid blue;
+    position: relative;
+    padding: 10px;
+}
+.dropdown-toggle{
+	height: 42px;
+}
+.menundk{
+	padding-bottom:20px;
+}
+form{
+	padding-top:20px;
+	padding-bottom:30px;
+}
